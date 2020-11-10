@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="resources/css/projects.css">
+  <link rel="stylesheet" href="resources/css/responsive_projects.css">
+
+  <!-- Favicons for browsers, tabs, mobiles, and windows -->
+  <link rel="apple-touch-icon" sizes="57x57" href="resources/favicons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="resources/favicons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="resources/favicons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="resources/favicons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="resources/favicons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="resources/favicons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="resources/favicons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="resources/favicons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="resources/favicons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="resources/favicons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="resources/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="resources/favicons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="resources/favicons/favicon-16x16.png">
+  <link rel="manifest" href="resources/favicons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="resources/favicons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Google fonts: Monrope -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <!-- Tagify. Tag view for input elements -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tagify/3.20.3/tagify.min.css"
+    integrity="sha512-WHUiCHz/wMPvwLomZas+LNiUjd2mMhIdM2ybtlsC2TM6E+EGjn8PIbXnoPgh7sXgYaomLMVQCRVPQpAq2vkZ4g=="
+    crossorigin="anonymous" />
+
+  <title>Projects</title>
+</head>
+
+<body class="flex-box">
+  <!-- Navigation drawer  -->
+  <section class="navigation-drawer flex-box">
+    <nav>
+      <ul>
+        <li><a href="/index.html">Project</a></li>
+        <li><a href="/index.html">Dashboard</a></li>
+      </ul>
+    </nav>
+    <img>
+    <p class="drawer-handle">+</p>
+  </section>
+  <!-- Navigation drawer ends -->
+  
+  <!--    Side panel section-->
+  <section class="side-panel">
+
+    <div class="head-text-logo flex-box">
+      <div class="logo"> <img src="resources/imgs/user.png" alt="User Icon"> </div>
+      <p>Project Management<br>System</p>
+    </div>
+    <span class="add-projects-label"><button class="add-project-btn">+</button>Add Projects</span>
+    <hr id="outline">
+    <div class="card-holder flex-box" id="projectList">
+
+      <!--  -->
+      <!-- Dynamic list of projects as cards using JavaScript -->
+      <!--  -->
+
+      <div class="no-data-div-project">
+        <img src="resources/imgs/error-img.png" alt="No Data available image">
+        <p>No Data Available</p>
+      </div>
+
+    </div>
+
+  </section>
+  <!--    Side panel section ends-->
+
+  <!-- Main panel starts here -->
+  <section class="main-panel">
+    <!--      Header starts here-->
+    <header class="flex-box">
+
+      <div class="slice-one flex-box">
+        <div class="menu-and-title flex-box">
+          <ul class="nav-links">
+            <li> <a href="dashboard.html">Dashboard</a> </li>
+          </ul>
+          <h1>PROJECTS</h1>
+        </div>
+        
+        <div class="mobile-hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="slice-two">
+        <P>Welcome</P>
+        <button class="btn-red">
+          <ion-icon name="log-out-outline"></ion-icon>
+        </button>
+      </div>
+
+    </header>
+    <!--      Header ends here-->
+
+    <!--      Middle tabs start here-->
+    <section class="middle-tabs">
+      <div class="tab-buttons flex-box">
+        <div class="button-box flex-box">
+          <button class="active-tab" data-index="0">Details</button>
+          <button data-index="1">Resources</button>
+          <button data-index="2" id="invoice-btn">Invoice</button>
+        </div>
+        <button class="edit-details-btn"><ion-icon name="create-outline" id="edit-icon"></button>
+      </div>
+
+      <hr class="tab-line">
+
+      <!-- First tab -->
+      <div class="tab-content" data-editable="true">
+        <div class="tab-container flex-box">
+
+          <!--  -->
+          <!-- Details list of project. Dynamic using JavaScript -->
+          <!--  -->
+
+          <div class="no-data-div-details">
+            <img src="resources/imgs/error-img.png" alt="No Data available image">
+            <p>No Data Available</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Second tab -->
+      <div class="tab-content" data-editable="false">
+        <span class="add-resources-label"><button class="add-resources-btn">+</button>Add Resources</span>
+
+        <div class=" resource-table-scroll scroll-box">
+          <div style="overflow-x:auto;" class="horizontal-scroll">
+            <table class="resource-table">
+              <!--  -->
+              <!-- Dynamic Table with JavaScript -->
+              <!--  -->
+            </table>
+          </div>
+
+          <div class="no-data-div-resource">
+            <img src="resources/imgs/error-img.png" alt="No Data available image">
+            <p>No Data Available</p>
+          </div>
+        </div>
+
+
+      </div>
+
+      <!-- Third tab -->
+      <div class="tab-content">
+        <div class="generate-invoice-box flex-box">
+          <label for="day-count">Number of working days: </label>
+          <input type="number" name="day-count" id="working-days">
+          <button class="generate-invoice-btn">Generate Invoice</button>
+        </div>
+        <div class="scroll-box">
+          <table class="invoice-details">
+            <!--  -->
+            <!-- Dynamic Table with JavaScript -->
+            <!--  -->
+            <div class="no-data-div-invoice">
+              <img src="resources/imgs/error-img.png" alt="No Data available image">
+              <p>No Data Available</p>
+            </div>
+          </table>
+        </div>
+        <p class="total-amount-label">Total: <span class="total-amount"></span></p>
+      </div>
+    </section>
+    <!--      Middle tabs end here-->
+
+    <!--      Footer starts here-->
+    <footer class="flex-box">
+
+      <!-- There is nothing in footer -->
+
+    </footer>
+    <!--      Footer ends here-->
+  </section>
+
+  <!-- Pop up - Add projects -->
+  <section class="popup add-project-popup">
+    <h3 class="add-project-heading">Add Project</h3>
+    <hr class="add-project-line">
+    <p id="project-add-date-error"></p>
+    <div class="project-name-group group flex-box">
+      <label for="Project Name">Name</label>
+      <input type="text" name="Project Name" id="project-name" class="add-project-validate" required>
+      <p class="project-name-error"></p>
+    </div>
+
+    <div class="project-description-group group flex-box">
+      <label for="Description">Description</label>
+      <textarea name="Description" id="project-description" class="add-project-validate" required></textarea>
+      <p class="project-description-error"></p>
+    </div>
+
+    <div class="project-technologies-group group flex-box">
+      <label for="Technologies">Technologies</label>
+      <input type="text" name="Technologies" id="project-technologies" class="add-project-validate"
+        data-role="tagsinput" required>
+      <p class="project-technologies-error"></p>
+    </div>
+
+    <div class="project-percentage-group group flex-box">
+      <label for="Percentage">Percentage Completed</label>
+      <input type="number" name="Percentage" id="project-percentage" class="add-project-validate" required>
+      <p class="project-percentage-error"></p>
+    </div>
+
+    <div class="date-set-box flex-box">
+      <div class="project-startDate-group flex-box">
+        <label for="Start Date">Start Date</label>
+        <input type="date" name="Start Date" id="project-startDate" class="add-project-validate" required>
+        <p class="project-startDate-error"></p>
+      </div>
+
+      <div class="project-endDate-group flex-box">
+        <label for="End Date">End Date</label>
+        <input type="date" name="End Date" id="project-endDate" class="add-project-validate" required>
+        <p class="project-endDate-error"></p>
+      </div>
+    </div>
+
+    <div class="popup-button-box flex-box">
+      <button class="cancel-add-btn">Cancel</button>
+      <button class="add-project-popup-btn">Add</button>
+    </div>
+  </section>
+
+  <!-- Pop up - Edit projects -->
+  <section class="popup edit-project-popup">
+    <h3 class="edit-project-heading">Edit Project</h3>
+    <hr class="edit-project-line">
+    <p id="project-edit-date-error"></p>
+    <div class="edit-project-name-group group flex-box">
+      <label for="Project Name">Name</label>
+      <input type="text" name="Project Name" id="project-name-edit" class="edit-project-validate" required>
+      <p class="project-name-edit-error"></p>
+    </div>
+
+    <div class="edit-project-description-group group flex-box">
+      <label for="Description">Description</label>
+      <textarea name="Description" id="project-description-edit" class="edit-project-validate" required></textarea>
+      <p class="project-description-edit-error"></p>
+    </div>
+
+    <div class="edit-project-technologies-group group flex-box">
+      <label for="Technologies">Technologies</label>
+      <input type="text" name="Technologies" id="project-technologies-edit"
+        class="edit-project-validate project-technologies-edit" data-role="tagsinput" required>
+      <!-- <div class="autocomplete">
+          <p>jdhgfa</p>
+          <hr class="autocomplete-hr">
+          <p>dfgag</p>
+        </div> -->
+      <p class="project-technologies-edit-error"></p>
+    </div>
+
+    <div class="edit-project-percentage-group group flex-box">
+      <label for="Percentage">Percentage Completed</label>
+      <input type="number" name="Percentage" id="project-percentage-edit" class="edit-project-validate" required>
+      <p class="project-percentage-edit-error"></p>
+    </div>
+
+    <div class="date-set-box flex-box">
+      <div class="edit-project-startDate-group flex-box">
+        <label for="Start Date">Start Date</label>
+        <input type="date" name="Start Date" id="project-startDate-edit" class="edit-project-validate" required>
+        <p class="project-startDate-edit-error"></p>
+      </div>
+
+      <div class="edit-project-endDate-group flex-box">
+        <label for="End Date">End Date</label>
+        <input type="date" name="End Date" id="project-endDate-edit" class="edit-project-validate" required>
+        <p class="project-endDate-edit-error"></p>
+      </div>
+    </div>
+
+    <div class="popup-button-box flex-box">
+      <button class="cancel-edit-btn">Cancel</button>
+      <button class="edit-project-popup-btn">Update</button>
+    </div>
+  </section>
+
+  <!-- Pop up - Add resources -->
+  <section class="popup add-resources-popup">
+    <h3 class="add-resources-heading">Add Resources</h3>
+    <hr class="edit-project-line">
+
+    <div class="add-resources-name-group group flex-box">
+      <label for="Name">Name</label>
+      <input type="text" name="Name" id="name-add" class="add-resources-validate" required>
+      <p class="name-add-error"></p>
+    </div>
+
+    <div class="add-resources-email-group group flex-box">
+      <label for="Email">Email</label>
+      <input type="email" name="Email" id="email-add" class="add-resources-validate" required>
+      <p class="email-add-error"></p>
+    </div>
+
+    <div class="add-resources-billable-group group flex-box">
+      <div class="checkbox-container flex-box">
+        <label for="billable">Billable</label>
+        <input type="checkbox" name="name" id="billable-add" class="add-resources-validate" required>
+      </div>
+      <p class="billable-add-error"></p>
+    </div>
+
+    <div class="add-resources-rate-group group flex-box">
+      <label for="Rate">Rate per hour</label>
+      <input type="number" name="Rate" id="rate-add" class="add-resources-validate" required>
+      <p class="rate-add-error"></p>
+    </div>
+
+    <div class="popup-button-box flex-box resource-buttons">
+      <button class="cancel-add-resources-btn">Cancel</button>
+      <button class="add-resources-popup-btn">Add</button>
+    </div>
+  </section>
+
+  <!-- Pop up - Edit resources -->
+  <section class="popup edit-resources-popup">
+    <h3 class="add-resources-heading">Edit Resources</h3>
+    <hr class="edit-project-line">
+
+    <div class="edit-resources-name-group group flex-box">
+      <label for="Name">Name</label>
+      <input type="text" name="Name" id="edit-name-add" class="edit-resources-validate" required>
+      <p class="edit-name-add-error"></p>
+    </div>
+
+    <div class="add-resources-email-group group flex-box">
+      <label for="Email">Email</label>
+      <input type="email" name="Email" id="edit-email-add" class="edit-resources-validate" required>
+      <p class="edit-email-add-error"></p>
+    </div>
+
+    <div class="add-resources-billable-group group flex-box">
+      <div class="checkbox-container flex-box">
+        <label for="billable">Billable</label>
+        <input type="checkbox" name="name" id="edit-billable-add" class="edit-resources-validate" required>
+      </div>
+      <p class="edit-billable-add-error"></p>
+    </div>
+
+    <div class="add-resources-rate-group group flex-box">
+      <label for="Rate">Rate per hour</label>
+      <input type="number" name="rate" id="edit-rate-add" class="edit-resources-validate" required>
+      <p class="edit-rate-add-error"></p>
+    </div>
+
+    <div class="popup-button-box flex-box resource-buttons">
+      <button class="cancel-edit-resources-btn">Cancel</button>
+      <button class="edit-resources-popup-btn">Update</button>
+    </div>
+  </section>
+
+  <!-- Pop up - Delete resources -->
+  <section class="popup delete-resources-popup">
+    <h3 class="add-resources-heading">Are you sure?</h3>
+    <hr class="delete-project-line">
+
+    <div class="popup-button-box flex-box resource-buttons">
+      <button class="cancel-delete-resources-btn">Cancel</button>
+      <button class="delete-resources-popup-btn">Delete</button>
+    </div>
+  </section>
+  <!-- Preloader -->
+  <section class="preloader-box flex-box">
+    <div class="preloader"></div>
+    <p class="loading-text">Loading... Please Wait</p>
+  </section>
+
+  <script type="module" src="resources/js/api.js"></script>
+  <script type="module" src="resources/js/utils.js"></script>
+  <script type="module" src="resources/js/projects.js"></script>
+  <script type="module" src="resources/js/details.js"></script>
+  <script type="module" src="resources/js/resources.js"></script>
+  <script type="module" src="resources/js/invoice.js"></script>
+
+  <!-- ionicons -->
+  <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+
+  <!-- Tagify. Tag view for input elements -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/3.20.3/tagify.min.js"
+    integrity="sha512-Ok8DfwnjQhVsq3+9ToFXJjkWPL2h99aJWCg4U8w7iWA6i3kf4zgNLd7cLBdWdCqGZArRevXQAr8FGbucnZqrvw=="
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

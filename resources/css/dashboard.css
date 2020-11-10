@@ -1,0 +1,438 @@
+/* CSS DocumentProject: Project Management Dashboard
+----------------------------------------------------------------------------------------------------------*/
+
+/*------------------Layout,Table of Contents-----------------------------------------------------------------
+1. BASIC STUFF
+2. REUSED ITEMS
+3. SIDE PANEL
+4. MAIN PANEL
+    i. Hamburger
+    ii. Header Area
+    iii. Cards Area
+    iv.  Graph Area
+-----------------------------------------------------------------------------------------------------------*/
+
+/* -------------------------------- */
+/* ----- 1. BASIC STUFF ------------*/
+/* -------------------------------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #fff;
+  /* color: #464648; */
+  color: #000;
+  font-family: "Manrope", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
+}
+
+/* Hide scrollbar */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background: transparent;
+}
+
+/* -------------------------------- */
+/* ----- 2. REUSED ITEMS -----------*/
+/* -------------------------------- */
+
+.flex-box {
+  display: flex;
+}
+
+/* -------------------------------- */
+/* ----- 3. SIDE PANEL -------------*/
+/* -------------------------------- */
+.side-panel {
+  width: 16%;
+  background-color: #fff;
+  height: 100vh;
+  position: fixed;
+}
+
+.active-sidebar {
+  margin-left: 0 !important;
+}
+
+/* -- Welcome Area --*/
+.welcome-area {
+  position: relative;
+  padding: 10px 5px;
+  padding-right: 12px;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  background-color: #49d8a11a;
+}
+
+.welcome-area p {
+  margin-left: 10px;
+  font-weight: 500;
+  overflow: hidden;
+}
+
+.profile-picture {
+  margin-left: 12px;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-image: url(../imgs/biden.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.profile-picture-icon {
+  font-size: 450%;
+}
+
+.back-arrow {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 100%;
+  display: none;
+}
+/* -- Navigation Area -- */
+.main-side-nav-box {
+  margin-top: 20px;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 79%; /* Determines how far the logout button will be */
+}
+
+.nav-links li:hover,
+.logout-box li:hover {
+  background-color: #49d8a11a;
+  color: #49d8a0;
+}
+
+.nav-links li:hover ion-icon,
+.logout-box li:hover ion-icon {
+  color: #49d8a0;
+}
+
+.nav-links li,
+.logout-box li {
+  color: #91a0b4;
+  padding: 10px 18px;
+  align-items: center;
+  transition: all0.2s ease;
+  cursor: pointer;
+}
+
+.nav-links ion-icon {
+  font-weight: 500;
+}
+
+.nav-links p,
+.logout-box p {
+  margin-left: 18px;
+  font-weight: 500;
+}
+
+/* -------------------------------- */
+/* ----- 4. MAIN PANEL -------------*/
+/* -------------------------------- */
+.main-panel {
+  background-color: #e7edf0;
+  width: 84%;
+  min-height: 100vh;
+  float: right;
+}
+
+/* ---------Hamburger ------------ */
+.mobile-hamburger {
+  display: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  /* z-index: 2000; */
+}
+
+.line {
+  width: 30px;
+  height: 3px;
+  background: #000;
+  margin: 5px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.line-dark {
+  background: #000;
+}
+
+/* --------- Header Area ---------- */
+header {
+  background-color: #fff;
+  margin: 10px 20px;
+  padding: 20px 15px;
+  border-radius: 5px;
+}
+
+.text-and-icons {
+  align-items: center;
+  justify-content: space-between;
+}
+
+h1 {
+  font-size: 150%;
+  font-weight: 500;
+}
+
+.search-icon {
+  font-size: 120%;
+}
+
+header hr {
+  margin-top: 10px;
+}
+
+/* ------------ Cards Area ---------- */
+.cards-area {
+  margin-top: 50px;
+  justify-content: space-between;
+}
+
+/* -- Chip cards -- */
+.card-chips-container {
+  width: 50%;
+  padding: 20px;
+  /* background-color: aquamarine; */
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.top-card-container,
+.bottom-card-container {
+  height: 47%;
+  justify-content: space-between;
+}
+
+.top-card-container > div,
+.bottom-card-container > div {
+  position: relative;
+  padding: 10px;
+  padding-left: 15px;
+  border-radius: 5px;
+  width: 48%;
+  background-color: #fff;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.card-icon {
+  background-color: #49d8a0;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-right: 20px;
+  text-align: center;
+  align-items: center;
+}
+
+.card-icon > ion-icon {
+  font-size: 180%;
+  align-self: center;
+  margin: 0 auto;
+}
+
+.card-number {
+  font-size: 250%;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.card-text {
+  font-weight: 500;
+  color: #91a0b4;
+  transition: all 0.2s ease;
+}
+
+.projects-card .card-icon,
+.total-employee-card .card-icon {
+  background: #4980d82d;
+  color: #4981d8;
+  transition: all 0.2s ease;
+}
+
+.employees-billable-card .card-icon {
+  background: #9ba3a02d;
+  color: #49d8a0;
+  transition: all 0.2s ease;
+}
+
+.employees-shadow-card .card-icon {
+  background-color: #d849802d;
+  color: #d84981;
+}
+
+/* Card hover effect */
+.top-card-container > div:hover,
+.bottom-card-container > div:hover {
+  background-color: #49d8a0;
+}
+
+.top-card-container > div:hover .card-text,
+.bottom-card-container > div:hover .card-text,
+.top-card-container > div:hover .card-number,
+.bottom-card-container > div:hover .card-number {
+  color: #fff;
+}
+
+.projects-card:hover .card-icon,
+.total-employee-card:hover .card-icon {
+  background-color: #4981d8;
+  color: #fff;
+}
+
+.employees-billable-card:hover .card-icon {
+  background-color: #339781;
+  color: #fff;
+}
+
+.employees-billable-card:hover .billable {
+  background-color: #339781;
+}
+
+.employees-shadow-card:hover .card-icon {
+  background-color: #d84981;
+  color: #fff;
+}
+
+.billable,
+.shadow {
+  border-radius: 20px;
+  padding: 2px 8px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #fff;
+  font-size: 80%;
+}
+
+.billable {
+  background-color: #49d8a0;
+}
+.shadow {
+  background-color: #d84981;
+}
+
+/* -- List Card -- */
+.tech-list-container {
+  margin: 20px;
+  margin-left: 0;
+  border-radius: 5px;
+  padding: 10px 0;
+  width: 50%;
+  background: #fff;
+  height: 300px;
+}
+
+.list-header {
+  padding: 0 20px;
+  margin-bottom: 15px;
+}
+
+.list-header p {
+  font-size: 110%;
+  font-weight: 500;
+  padding: 5px 0;
+  margin-bottom: 5px;
+}
+
+.tech-list {
+  height: 75%;
+  overflow: scroll;
+}
+
+.list-element {
+  padding: 5px 20px;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+}
+
+.list-element p {
+  font-weight: 500;
+  color: #91a0b4;
+}
+
+.list-element:hover {
+  background-color: #91a0b428;
+}
+
+/* ------------ Graph Area ---------- */
+
+.graph-box {
+  margin-top: 35px;
+  margin-bottom: 20px; /* Remove when new content is added below */
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.Chart-head {
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #91a0b4;
+}
+
+.chart-container {
+  border-radius: 5px;
+  padding: 25px;
+  background-color: #fff;
+  width: 49%;
+  height: fit-content;
+}
+
+/* -------------------------------- */
+/* ----- 10. PRELOADER ------------ */
+/* -------------------------------- */
+.blur {
+  filter: blur(10px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.active-loader {
+  visibility: visible !important;
+}
+.preloader-box {
+  position: fixed;
+  top: 30%;
+  left: 45%;
+  z-index: 999999;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  visibility: hidden;
+}
+
+.preloader {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 8px solid #49d8a0;
+  border-top: 8px solid #d84981;
+  visibility: hidden;
+  animation: rotate 1s ease-in-out infinite;
+}
+
+.loading-text {
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

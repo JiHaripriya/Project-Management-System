@@ -1,0 +1,868 @@
+/* CSS DocumentProject: Project Management Dashboard
+----------------------------------------------------------------------------------------------------------*/
+
+/*------------------Layout,Table of Contents-----------------------------------------------------------------
+1. BASIC STUFF
+2. REUSED ITEMS
+3. SIDE PANEL
+4. MAIN PANEL
+5. FOOTER
+6. DETAILS TAB
+7. RESOURCES TAB
+8. INVOICE TAB
+9. PROJECT - POPUP
+10. Preloader
+11. Navigation drawer
+-----------------------------------------------------------------------------------------------------------*/
+
+/* -------------------------------- */
+/* ----- 1. BASIC STUFF ------------*/
+/* -------------------------------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #fff;
+  color: #464648;
+  font-family: "Manrope", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
+}
+
+/* Hide scrollbar */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background: transparent;
+}
+
+/* -------------------------------- */
+/* ----- 2. REUSED ITEMS -----------*/
+/* -------------------------------- */
+.flex-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.side-panel {
+  padding: 20px;
+  height: 100vh;
+  width: 25%;
+  background-color: #fff;
+}
+
+.main-panel {
+  padding: 20px;
+  height: 100vh;
+  width: 75%;
+  background-color: #f6f7fb;
+}
+
+.btn-red {
+  padding: 8px 12px;
+  margin: 0 auto;
+  color: #fff;
+  background-color: #d84981;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.btn-red:hover {
+  -webkit-transform: translateY(-2px) scale(1.001);
+  transform: translateY(-2px) scale(1.001);
+  -webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+button {
+  font-size: 100%;
+}
+
+/* -------------------------------- */
+/* ----- 3. SIDE PANEL -------------*/
+/* -------------------------------- */
+.head-text-logo {
+  padding: 10px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+}
+
+.head-text-logo p {
+  font-size: 120%;
+  font-weight: 500;
+  margin-left: 20px;
+}
+
+.add-projects-label {
+  width: 100%;
+}
+.add-project-btn {
+  margin-bottom: 10px;
+  margin-right: 10px;
+  background-color: #49d8a0;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 5px 12px;
+  cursor: pointer;
+  outline: none;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.add-project-btn:hover,
+.project-card:hover {
+  -webkit-transform: translateY(-5px) scale(1.01);
+  transform: scale(1.01);
+  -webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+.card-holder {
+  height: 70%;
+  padding: 0 15px;
+  padding-top: 20px;
+  overflow: scroll;
+  flex-direction: column;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.project-card {
+  margin-bottom: 18px;
+  padding: 10px 10px;
+  height: 100px;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 5px;
+  -webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.project-card p {
+  height: 100%;
+  font-size: 110%;
+  font-weight: 500;
+  width: 60%;
+  overflow: scroll;
+  align-items: center;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.active-card,
+.project-card:hover {
+  background-color: #49d8a0;
+  color: #fff;
+}
+
+.card-circle {
+  height: 70px;
+  width: 70px;
+}
+
+.card-circle circle {
+  fill: none;
+  stroke-width: 10;
+  -webkit-transform: translate(5px, 5px);
+  transform: translate(5px, 5px);
+  stroke-dasharray: 190;
+  stroke-dashoffset: 190;
+}
+.card-circle circle:nth-child(1) {
+  stroke-dashoffset: 0;
+  stroke: #f3f3f3;
+}
+.card-circle circle:nth-child(2) {
+  stroke: #49d8a0;
+}
+
+.active-card .card-circle circle:nth-child(2) {
+  stroke: #d84981;
+}
+
+.project-card:hover circle:nth-child(2) {
+  stroke: #d84981;
+}
+
+/* -------------------------------- */
+/* ----- 4. MAIN PANEL -------------*/
+/* ---------------------------------*/
+
+/*----- Header ---------------*/
+.mobile-hamburger {
+  display: none;
+}
+header {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 17%;
+}
+header div {
+  -webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.slice-one {
+  padding: 10px 30px;
+  background-color: #49d8a0;
+  width: 75%;
+  height: 100%;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.menu-and-title{
+  box-shadow: none;
+  flex-direction: column;
+}
+
+.nav-links{
+  margin-bottom: 12px;
+  list-style: none;
+}
+
+.nav-links li{
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.nav-links a{
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+
+.nav-links a:hover{
+  color: #d84981;
+}
+
+h1 {
+  font-size: 150%;
+}
+
+.slice-two {
+  padding: 10px 10px;
+  background-color: #49d8a0;
+  width: 23%;
+  height: 100%;
+  color: #fff;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.slice-two p {
+  margin-bottom: 10px;
+}
+
+/*----- Middle tabs ----------*/
+.middle-tabs {
+  margin-top: 20px;
+  width: 100%;
+  height: 65%;
+}
+
+.tab-buttons {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.tab-buttons button {
+  padding: 8px 10px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.button-box {
+  width: 70%;
+  overflow: scroll;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.button-box button {
+  margin-right: 5px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.active-tab,
+.tab-buttons button:hover {
+  -webkit-transform: scale(1.01);
+  transform: scale(1.01);
+  background-color: #49d8a0 !important; /* To overwrite 'button-box buttons' color*/
+  color: #fff;
+  -webkit-box-shadow: 1px -1px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px -1px 8px rgba(0, 0, 0, 0.3);
+}
+
+.tab-line {
+  margin: 5px 0;
+}
+
+.tab-content {
+  height: 90%;
+  width: 100%;
+  background-color: #fff;
+  text-align: center;
+  padding: 30px;
+  display: none;
+  border-radius: 5px;
+  -webkit-box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+#edit-icon{
+  color: #fff;
+}
+
+/* -------------------------------- */
+/* ----- 5. FOOTER ------------*/
+/* -------------------------------- */
+footer {
+  bottom: 0px;
+  margin-bottom: 20px;
+  position: fixed;
+  width: 72.1%;
+  height: 8%;
+  background-color: #49d8a0;
+  border-radius: 5px;
+  -webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* -------------------------------- */
+/* ----- 6. DETAILS TAB ------------*/
+/* -------------------------------- */
+.tab-container {
+  text-align: left;
+}
+
+.left-side-details {
+  padding: 10px;
+  width: 70%;
+}
+.left-side-details .content {
+  margin-bottom: 10px;
+}
+.left-side-details .heading,
+.right-side-details .heading {
+  font-weight: 700;
+}
+
+.right-side-details {
+  position: relative;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 10px;
+  width: 30%;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.date-box {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 75%;
+  margin: 0 auto;
+  margin-top: -20px;
+}
+
+.right-side-details .detail-circle {
+  margin-top: 20px;
+  height: 150px;
+  width: 150px;
+}
+
+.right-side-details .detail-circle circle {
+  fill: none;
+  stroke-width: 15;
+  stroke: #000;
+  -webkit-transform: translate(5px, 5px);
+  transform: translate(5px, 5px);
+  stroke-dasharray: 410;
+  stroke-dashoffset: 410;
+  -webkit-transform: translate(10px, 10px);
+  transform: translate(10px, 10px);
+}
+
+.right-side-details .detail-circle circle:nth-child(1) {
+  stroke-dashoffset: 0;
+  stroke: #f3f3f3;
+}
+.right-side-details .detail-circle circle:nth-child(2) {
+  stroke-dashoffset: calc(410 - ((410 * 75) / 100));
+  stroke: #49d8a0;
+}
+
+.edit-details-btn {
+  background-color: #49d8a0;
+  color: #fff;
+  cursor: pointer;
+}
+
+.percentage-completed {
+  position: absolute;
+  top: 52%;
+  font-size: 150%;
+}
+
+/* -------------------------------- */
+/* ----- 7. RESOURCES TAB ----------*/
+/* -------------------------------- */
+.tab-content {
+  text-align: left;
+}
+
+.add-resources-label {
+  width: 25%;
+}
+
+.add-resources-btn {
+  border: 0;
+  padding: 5px 12px;
+  margin-right: 10px;
+  background-color: #49d8a0;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.add-resources-btn:hover {
+  -webkit-transform: scale(1.01);
+  transform: scale(1.01);
+  -webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+.resource-table {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.resource-table th {
+  background-color: #49d8a0;
+  color: #fff;
+  text-align: center;
+}
+
+td,
+th {
+  padding: 8px 5px !important; /* Required to overwrite bootstrap*/
+  border: 1px solid #e7e7e7;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+
+.edit-resource:hover,
+.delete-resource:hover {
+  background-color: #49d8a0;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* -------------------------------- */
+/* ----- 8. INVOICE TAB ------------*/
+/* -------------------------------- */
+.generate-invoice-box {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.generate-invoice-box label {
+  font-weight: 700;
+  margin-right: 10px;
+}
+.generate-invoice-box input {
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.generate-invoice-btn {
+  background-color: #49d8a0;
+  padding: 10px;
+  width: 25%;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.generate-invoice-btn:hover {
+  -webkit-transform: scale(1.01);
+  transform: scale(1.01);
+  -webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+.invoice-details {
+  width: 100%;
+}
+.invoice-details th {
+  background-color: #49d8a0;
+}
+
+.scroll-box {
+  margin-top: 20px;
+  height: 70%;
+  overflow: scroll;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.total-amount-label {
+  margin-top: 15px;
+  font-weight: 700;
+  text-align: right;
+}
+.total-amount {
+  font-weight: 300;
+  margin-left: 20px;
+}
+
+/* -------------------------------- */
+/* ----- 9. PROJECT - POPUP --------*/
+/* -------------------------------- */
+.add-project-line,
+.edit-project-line {
+  margin-top: 5px;
+}
+
+.blur {
+  filter: blur(20px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.active {
+  visibility: visible !important;
+  transition: 0.5s;
+}
+
+.popup {
+  flex-direction: column;
+  position: fixed;
+  padding: 20px;
+  top: 50%;
+  visibility: hidden;
+  left: 50%;
+  width: 500px;
+  max-height: 97%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 5px;
+  overflow: scroll;
+  z-index: 9999;
+}
+.popup div {
+  width: 100%;
+}
+
+.popup h3 {
+  margin-top: 0;
+}
+
+.popup p {
+  font-size: 90%;
+  font-weight: 500;
+  margin-left: 5px;
+}
+
+.popup label {
+  margin-top: 10px;
+  font-weight: 500;
+}
+.popup input,
+.popup label,
+.popup textarea {
+  padding: 5px;
+  border-radius: 2px;
+}
+
+.popup input,
+.popup textarea {
+  border: 1px solid #dedbdb;
+}
+
+.popup textarea {
+  font-family: "Manrope", sans-serif; /* Remove default textarea font family*/
+}
+
+.group {
+  flex-direction: column;
+}
+
+.date-set-box div {
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.date-set-box div,
+.popup-button-box button {
+  width: 45%;
+}
+
+.date-set-box,
+.popup-button-box {
+  justify-content: space-between;
+}
+
+.popup-button-box button {
+  padding: 8px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-project-popup-btn,
+.edit-project-popup-btn,
+.add-resources-popup-btn,
+.edit-resources-popup-btn,
+.delete-resources-popup-btn {
+  background-color: #49d8a0;
+  transition: all 0.2s ease;
+  color: #fff;
+}
+
+.add-project-popup-btn:hover,
+.edit-project-popup-btn:hover,
+.add-resources-popup-btn:hover,
+.edit-resources-popup-btn:hover,
+.delete-resources-popup-btn:hover {
+  transform: scale(1.01);
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+.cancel-add-btn,
+.cancel-edit-btn,
+.cancel-add-resources-btn,
+.cancel-edit-resources-btn,
+.cancel-delete-resources-btn {
+  background-color: #fff;
+  border: 1px solid #d84981 !important;
+  transition: all 0.2s ease;
+}
+
+.cancel-add-btn:hover,
+.cancel-edit-btn:hover,
+.cancel-add-resources-btn:hover,
+.cancel-edit-resources-btn:hover,
+.cancel-delete-resources-btn:hover {
+  background-color: #d84981;
+  color: #fff;
+  transform: scale(1.01);
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+.checkbox-container {
+  flex-direction: row;
+  align-items: center;
+}
+
+.checkbox-container label,
+.checkbox-container input {
+  margin: 0;
+}
+
+.resource-buttons {
+  margin-top: 25px;
+  margin-bottom: 5px;
+}
+
+.tags-look .tagify__dropdown__item {
+  display: inline-block;
+  border-radius: 3px;
+  padding: 0.3em 0.5em;
+  border: 1px solid #ccc;
+  background: #f3f3f3;
+  margin: 0.2em;
+  font-size: 0.85em;
+  color: black;
+  transition: 0s;
+  z-index: 999999999;
+}
+
+.tags-look .tagify__dropdown__item--active {
+  color: black;
+}
+
+.tags-look .tagify__dropdown__item:hover {
+  background: lightyellow;
+  border-color: gold;
+}
+
+/* -------------------------------- */
+/* ----- 9. SERVER ERROR MESSAGES --*/
+/* -------------------------------- */
+.no-data-div-resource,
+.no-data-div-details,
+.no-data-div-project,
+.no-data-div-invoice {
+  width: 100%;
+  text-align: center;
+}
+
+.no-data-div-resource img,
+.no-data-div-details img,
+.no-data-div-project img,
+.no-data-div-invoice img {
+  height: 150px;
+  width: auto;
+}
+
+.no-data-div-resource p,
+.no-data-div-details p,
+.no-data-div-project p,
+.no-data-div-invoice p {
+  color: #464648;
+  font-weight: 500;
+}
+
+/* -------------------------------- */
+/* ----- 10. PRELOADER ------------ */
+/* -------------------------------- */
+.active-loader{visibility: visible !important;}
+.preloader-box{
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  z-index: 999999;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  visibility: hidden;
+}
+
+.preloader{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 8px solid #49d8a0;
+  border-top: 8px solid #d84981;
+  visibility: hidden;
+  animation: rotate 1s ease-in-out infinite;
+}
+
+.loading-text{
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+@keyframes rotate{
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+
+/* -------------------------------- */
+/* ----- 11. Navigation drawer ---- */
+/* -------------------------------- */
+.navigation-drawer{
+  flex-direction: column;
+  width: 100vw;
+  position: fixed;
+  top:0;
+  align-items: center;
+  margin-top: -42px;
+  transition: all 0.5s;
+  z-index: 99999;
+}
+
+.navigation-drawer nav{
+  width: 100%;
+  background-color: grey;
+}
+
+.navigation-drawer nav ul {
+
+  float: right;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.navigation-drawer nav ul li{
+  margin-right: 10px ;
+  display: inline-block;
+}
+
+.navigation-drawer nav ul li a{
+  text-decoration: none;
+  color: white;
+}
+
+.drawer-handle {
+  width: fit-content;
+  padding: 1px 12px;
+  border-radius: 3px;
+  margin-top: -2px;
+  background-color: grey;
+  color: white;
+  cursor: pointer;
+}
+
+.active-drawer {
+  margin-top: 0;
+}

@@ -1,0 +1,193 @@
+/*-----------------------------------*/
+/*------ TAB VIEW -------------------*/
+/*-----------------------------------*/
+@media only screen and (max-width: 768px) {
+  /*-------------- Basic stuff -----*/
+  html {
+    font-size: 14px;
+  }
+
+  /*-------------- Side panel -----*/
+  .side-panel {
+    width: 30vw;
+    z-index: 999;
+    margin-left: -30vw;
+    transition: all 0.5s linear;
+  }
+
+  .back-arrow {
+    display: block;
+  }
+
+  /*-------------- Main panel -----*/
+  .mobile-hamburger {
+    display: block;
+  }
+
+  .main-panel {
+    width: 100%;
+  }
+
+  .card-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+
+  .card-number {
+    font-size: 180%;
+  }
+
+  .card-text {
+    font-weight: 500;
+    font-size: 90%;
+  }
+
+  /*-------------- Graph -----*/
+  .graph-box {
+    flex-direction: column;
+  }
+
+  .chart-container {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+/*-----------------------------------*/
+/*------ TAB VIEW: INTERMEDIATE -----*/
+/*-----------------------------------*/
+@media only screen and (max-width: 540px) {
+  /* ------------ Cards Area ---------- */
+  .cards-area {
+    margin-top: 20px;
+    flex-direction: column;
+  }
+
+  .card-chips-container {
+    width: 100%;
+  }
+
+  .top-card-container,
+  .bottom-card-container {
+    margin-bottom: 10px;
+    height: 100px;
+  }
+  .bottom-card-container {
+    margin-bottom: 0px;
+  }
+
+  .top-card-container > div,
+  .bottom-card-container > div {
+    height: 100%;
+  }
+
+  /* -- List Card -- */
+  .tech-list-container {
+    width: 92.5%;
+    margin: 20px;
+  }
+
+  .preloader-box {
+    top: 30%;
+    left: 40%;
+  }
+}
+
+/*-----------------------------------*/
+/*------ MOBILE VIEW: LARGE ---------*/
+/*-----------------------------------*/
+@media only screen and (max-width: 420px) {
+  .side-panel {
+    width: 70vw;
+    z-index: 999;
+    margin-left: -70vw;
+    transition: all 0.5s linear;
+  }
+
+  h1 {
+    font-size: 110%;
+    font-weight: 500;
+  }
+
+  .line {
+    width: 20px;
+    height: 2px;
+    background: #000;
+    margin: 5px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .top-card-container > div{
+    padding-right: 0;
+  }
+  /* ------------ Graph Area ---------- */
+  .graph-box {
+    margin-top: 20px;
+    justify-content: space-between;
+  }
+
+  .chart-container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  /* -- List Card -- */
+  .tech-list-container {
+    width: 90.5%;
+  }
+
+  .preloader-box {
+    top: 30%;
+    left: 35%;
+  }
+}
+
+/*-----------------------------------*/
+/*------ MOBILE VIEW: SMALL ---------*/
+/*-----------------------------------*/
+@media only screen and (max-width: 360px) {
+  html {
+    font-size: 12px;
+  }
+
+  .line {
+    width: 15px;
+    height: 2px;
+    background: #000;
+    margin: 2px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  h1 {
+    font-size: 110%;
+    font-weight: 500;
+  }
+
+  .top-card-container,
+  .bottom-card-container {
+    margin-bottom: 10px;
+    height: 70px;
+  }
+
+  .billable,
+  .shadow {
+    padding: 1px 5px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #fff;
+    font-size: 70%;
+  }
+
+  .tech-list-container {
+    margin-top: 5px;
+  }
+
+  /* -- List Card -- */
+  .tech-list-container {
+    width: 89%;
+  }
+}
