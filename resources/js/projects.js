@@ -32,6 +32,7 @@ function setTabs(index) {
   buttons.forEach((button) => {
     button.className = "";
   });
+  
   buttons[index].className = "active-tab";
 
   tabs.forEach((tab) => {
@@ -46,6 +47,7 @@ function setTabs(index) {
   }
 }
 
+// By default, project details tab is displayed
 setTabs(0);
 
 /*----- API call to receive projects data from server ----*/

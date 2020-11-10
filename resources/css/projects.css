@@ -10,9 +10,11 @@
 6. DETAILS TAB
 7. RESOURCES TAB
 8. INVOICE TAB
-9. PROJECT - POPUP
-10. Preloader
-11. Navigation drawer
+9. ACTIVITY TAB
+10. PROJECT - POPUP
+11. Server error messages
+12. Preloader
+13. Navigation drawer
 -----------------------------------------------------------------------------------------------------------*/
 
 /* -------------------------------- */
@@ -26,7 +28,7 @@
   box-sizing: border-box;
 }
 
-html {
+html, select {
   background-color: #fff;
   color: #464648;
   font-family: "Manrope", sans-serif;
@@ -580,7 +582,105 @@ th {
 }
 
 /* -------------------------------- */
-/* ----- 9. PROJECT - POPUP --------*/
+/* ----- 9. ACTIVITY TAB --*/
+/* -------------------------------- */
+
+.activity-tab {padding: 16px;}
+.generate-activity {
+  background-color: #49d8a0;
+  padding: 6px 20px;
+  border: none;
+  border-radius: 2px;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.activity-form {
+  background-color: #e2e1e144;
+  padding: 15px;
+  border-radius: 6px;
+  width: inherit;
+  margin-bottom: 15px;
+}
+
+.activity-form > div {margin: 0 26px 0 0;}
+.activity-form select {margin: 6px 0 0 0;}
+
+.activity-form select {
+  font-size: 14px; 
+  border-radius: 2px;
+  padding: 5px;
+}
+
+.activity-form select:focus {
+  outline: 1px solid black; 
+}
+
+option {font-size: 14px;}
+.resource-alignment {flex: 1;}
+.time-alignment {margin-right: 3px;}
+.save-button {align-items: flex-end;}
+
+.activity-tab .scroll-box {
+  height: 60%; 
+  margin-top: 10px; 
+  font-size: 14px;
+}
+
+.history {
+  font-weight: bold; 
+  display: block; 
+  padding-top: 5px; 
+}
+
+.history-tab {
+  margin: 25px 0 0 0;
+}
+.history-tab > div {margin: 0 0 35px 0;}
+
+.entries {border-top: 0.5px solid #4646486e; }
+.history-date {
+  position: relative;
+  top: -25px;
+  padding: 2px;
+  display: block;
+  text-align: center;
+  width: 15%;
+  background: #e2e1e144;
+}
+
+.history-tab__contents {padding: 0 10px 6px 10px; margin-top: -10px;}
+.history-date > span {font-size: 16px;}
+.seperator-line { 
+  width: 1px; 
+  background-color: #49d8a0; 
+  align-self: stretch; 
+  margin: 0 5px;
+}
+
+.history-tab__contents {
+  margin-bottom: 10px; 
+  display: flex; 
+  height: 30px; 
+  align-items: center;
+}
+
+.history__posted-time {font-size: 13px; color: gray;}
+.history__resource-name {flex: 0.7;}
+.history__resource-email {flex: 0.8;}
+.history__activity-type {flex: 0.5;}
+.history__time-spent {flex: 0.3;}
+.history__posted-time {flex: 0.4;}
+
+/* -------------------------------- */
+/* ----- 10. PROJECT - POPUP --------*/
 /* -------------------------------- */
 .add-project-line,
 .edit-project-line {
@@ -752,7 +852,7 @@ th {
 }
 
 /* -------------------------------- */
-/* ----- 9. SERVER ERROR MESSAGES --*/
+/* ----- 11. SERVER ERROR MESSAGES --*/
 /* -------------------------------- */
 .no-data-div-resource,
 .no-data-div-details,
@@ -779,7 +879,7 @@ th {
 }
 
 /* -------------------------------- */
-/* ----- 10. PRELOADER ------------ */
+/* ----- 12. PRELOADER ------------ */
 /* -------------------------------- */
 .active-loader{visibility: visible !important;}
 .preloader-box{
@@ -818,7 +918,7 @@ th {
 }
 
 /* -------------------------------- */
-/* ----- 11. Navigation drawer ---- */
+/* ----- 13. Navigation drawer ---- */
 /* -------------------------------- */
 .navigation-drawer{
   flex-direction: column;

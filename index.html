@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tagify/3.20.3/tagify.min.css"
     integrity="sha512-WHUiCHz/wMPvwLomZas+LNiUjd2mMhIdM2ybtlsC2TM6E+EGjn8PIbXnoPgh7sXgYaomLMVQCRVPQpAq2vkZ4g=="
     crossorigin="anonymous" />
-
+  <script src="resources/js/activity.js" defer></script>
   <title>Projects</title>
 </head>
 
@@ -113,6 +113,7 @@
           <button class="active-tab" data-index="0">Details</button>
           <button data-index="1">Resources</button>
           <button data-index="2" id="invoice-btn">Invoice</button>
+          <button data-index="3" id="activity-btn">Activity</button>
         </div>
         <button class="edit-details-btn"><ion-icon name="create-outline" id="edit-icon"></button>
       </div>
@@ -129,7 +130,7 @@
 
           <div class="no-data-div-details">
             <img src="resources/imgs/error-img.png" alt="No Data available image">
-            <p>No Data Available</p>
+            <p> No Data Available </p>
           </div>
 
         </div>
@@ -177,6 +178,139 @@
         </div>
         <p class="total-amount-label">Total: <span class="total-amount"></span></p>
       </div>
+
+      <!-- Fourth tab -->
+      <div class="tab-content activity-tab">
+        <!-- Activity Form -->
+        <form id="activity-form" class="flex-box activity-form">
+          <div class="flex-box group date-alignment">
+            <label for="date">Date</label>
+            <select name="date" id="dates"></select>
+          </div>
+          <div class="flex-box group resource-alignment">
+            <label for="resources">Resources</label>
+            <!-- Populate resources -->
+            <select name="resources-list" id="resources-list">
+              <option value="">List of resources</option>
+            </select>
+          </div>
+          <div class="flex-box group activity-alignment">
+            <label for="activity-type">Activity Type</label>
+            <select name="activity-type" id="activity-type">
+              <option value="0">Project management</option>
+              <option value="1">Training</option>
+              <option value="2">Architecting</option>
+              <option value="3">Requirements analysis</option>
+              <option value="4">System design</option>
+              <option value="5">Coding</option>
+              <option value="6">Graphic design</option>
+              <option value="7">Testing</option>
+              <option value="8">HTML/CSS</option>
+              <option value="9">Pre-sales</option>
+              <option value="10">Tech Support</option>
+              <option value="11">UX design</option>
+              <option value="12">Marketing</option>
+              <option value="13">Business Analysis</option>
+              <option value="14">Recruitment &amp; HR</option>
+              <option value="15" selected>Other</option>
+            </select>
+          </div>
+          <div class="flex-box">
+            <div class="flex-box group time-alignment">
+              <label for="spent">Hours</label>
+              <select name="time-spent" id="time-spent"></select>
+            </div>
+            <div class="flex-box group time-alignment">
+              <label for="spent">Minutes</label>
+              <select name="time-spent-minutes" id="time-spent-minutes"></select>
+            </div>
+          </div>
+          
+          <div class="flex-box save-button">
+            <button type="submit" value="Save" class="generate-activity" id="generate-activity">Save</button>
+          </div>
+        </form>
+        <span class="history">History</span>
+        <!-- History Data Section -->
+        <div class="scroll-box">
+          <!-- DISPLAY THIS ONLY IF HISTORY IS NOT AVAILABLE FOR A PROJECT
+            <div class="no-data-div-invoice">
+            <img src="resources/imgs/error-img.png" alt="No Data available image">
+            <p>No Data Available</p>
+          </div> 
+          -->
+          <div class="history-tab">
+            <div class="entries">
+              <span class="history-date"><span>10/11/2020</span></span>
+              <div class="history-tab__contents">
+                <span class="history__resource-name">Resource Name</span>
+                <span class="history__resource-email">Resource Email</span>
+                <span class="history__activity-type">Activity Type</span>
+                <span class="history__time-spent">Time (Hrs + Mins)</span>
+                <span class="seperator-line"></span>
+                <span class="history__posted-time">Posted On: Time</span>
+              </div>
+              <div class="history-tab__contents">
+                <span class="history__resource-name">Resource Name</span>
+                <span class="history__resource-email">Resource Email</span>
+                <span class="history__activity-type">Activity Type</span>
+                <span class="history__time-spent">Time (Hrs + Mins)</span>
+                <span class="seperator-line"></span>
+                <span class="history__posted-time">Posted On: Time</span>
+              </div>
+              <div class="history-tab__contents">
+                <span class="history__resource-name">Resource Name</span>
+                <span class="history__resource-email">Resource Email</span>
+                <span class="history__activity-type">Activity Type</span>
+                <span class="history__time-spent">Time (Hrs + Mins)</span>
+                <span class="seperator-line"></span>
+                <span class="history__posted-time">Posted On: Time</span>
+              </div>
+              <div class="history-tab__contents">
+                <span class="history__resource-name">Resource Name</span>
+                <span class="history__resource-email">Resource Email</span>
+                <span class="history__activity-type">Activity Type</span>
+                <span class="history__time-spent">Time (Hrs + Mins)</span>
+                <span class="seperator-line"></span>
+                <span class="history__posted-time">Posted On: Time</span>
+              </div>
+            </div>
+            <div class="entries">
+              <span class="history-date"><span>10/11/2020</span></span>
+              <div class="history-tab__contents">
+                <span class="history__resource-name">Resource Name</span>
+                <span class="history__resource-email">Resource Email</span>
+                <span class="history__activity-type">Activity Type</span>
+                <span class="history__time-spent">Time (Hrs + Mins)</span>
+                <span class="seperator-line"></span>
+                <span class="history__posted-time">Posted On: Time</span>
+              </div>
+            </div>
+            <div class="entries">
+              <span class="history-date"><span>10/11/2020</span></span>
+              <div class="history-tab__contents">
+                <span class="history__resource-name">Resource Name</span>
+                <span class="history__resource-email">Resource Email</span>
+                <span class="history__activity-type">Activity Type</span>
+                <span class="history__time-spent">Time (Hrs + Mins)</span>
+                <span class="seperator-line"></span>
+                <span class="history__posted-time">Posted On: Time</span>
+              </div>
+            </div>
+            <div class="entries">
+              <span class="history-date"><span>10/11/2020</span></span>
+              <div class="history-tab__contents">
+                <span class="history__resource-name">Resource Name</span>
+                <span class="history__resource-email">Resource Email</span>
+                <span class="history__activity-type">Activity Type</span>
+                <span class="history__time-spent">Time (Hrs + Mins)</span>
+                <span class="seperator-line"></span>
+                <span class="history__posted-time">Posted On: Time</span>
+              </div>
+            </div>
+        </div>
+      </div>
+
     </section>
     <!--      Middle tabs end here-->
 
