@@ -193,6 +193,6 @@ function toggleSidebar() {
 /*---------------- clicks for nav items -------------------*/
 let toProjects = document.querySelector('#projectLink')
 toProjects.addEventListener('click', () => {
-  location.href = '/Dashboard-Project/index.html'
+  location.href = 'index.html'
 })
 

@@ -191,7 +191,8 @@ let chartMaker = function (canvas, type, featureArray) {
         // Start from zero in y-axis
         yAxes: [{
           ticks: {
-            beginAtZero: true
+            beginAtZero: true,
+            precision: 0
           }
         }]
       },
