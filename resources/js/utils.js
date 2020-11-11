@@ -209,9 +209,9 @@ let chartMaker = function (canvas, type, featureArray) {
 
 /*----------- Common variables and values -------------------------*/
 // APIs
-let resourceAPI = 'https://api.jsonbin.io/b/5fa0cbf1a03d4a3bab0bbf3f';
-let projectAPI = 'https://api.jsonbin.io/b/5fa0cbbea03d4a3bab0bbf32';
-let secretKey = '$2b$10$1KZ6VDOn5QBsDQ6Fk2BGdeDrxrbQVt6vqpDTnFlM5xykGvBmx7hkC';
+let resourceAPI = 'https://api.jsonbin.io/b/5fab9cc75677ab0aa14b0551';
+let projectAPI = 'https://api.jsonbin.io/b/5fab9c7448818715939f2733';
+let secretKey = '$2b$10$ZqxlCvfg0KVF1GkqsbI29u8bwGG1jE7jdHujechv1B2EGDvA.a97q';
 let latestOfflineResourceList
 
 // List of technologies for popup input field.
