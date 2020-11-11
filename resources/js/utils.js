@@ -209,13 +209,14 @@ let chartMaker = function (canvas, type, featureArray) {
 
 /*----------- Common variables and values -------------------------*/
 // APIs
-let resourceAPI = 'https://api.jsonbin.io/b/5fab9cc75677ab0aa14b0551';
-let projectAPI = 'https://api.jsonbin.io/b/5fab9c7448818715939f2733';
-let secretKey = '$2b$10$ZqxlCvfg0KVF1GkqsbI29u8bwGG1jE7jdHujechv1B2EGDvA.a97q';
-let latestOfflineResourceList
+let resourceAPI = 'https://api.jsonbin.io/b/5fababf748818715939f2d89';
+let projectAPI = 'https://api.jsonbin.io/b/5fababab5677ab0aa14b0b71';
+let statusReportAPI = 'https://api.jsonbin.io/b/5fabacc3b509ba0cc56d73ee';
+let secretKey = '$2b$10$VGpqgawvNg.JMWKCBCZ/pe1.7EEmRSsshn/QjqKM197jJYVuZ1RW.';
+let latestOfflineResourceList, latestOfflineStatusReports;
 
 // List of technologies for popup input field.
 let arrayOfTechnologies = ["HTML", "CSS", "JavaScript", "Flutter", "Swift", "Java", "C++", "C#", "Python"]
 
-let utils = { popup, validateFields, validate, svgCircleMaker, resourceAPI, projectAPI, secretKey, arrayOfTechnologies, latestOfflineResourceList, chartMaker };
+let utils = { popup, validateFields, validate, svgCircleMaker, resourceAPI, projectAPI, statusReportAPI, secretKey, arrayOfTechnologies, latestOfflineResourceList, latestOfflineStatusReports, chartMaker };
 export default utils;
