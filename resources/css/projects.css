@@ -857,7 +857,8 @@ option {font-size: 14px;}
 .no-data-div-resource,
 .no-data-div-details,
 .no-data-div-project,
-.no-data-div-invoice {
+.no-data-div-invoice,
+.no-data-div-activity {
   width: 100%;
   text-align: center;
 }
@@ -865,7 +866,8 @@ option {font-size: 14px;}
 .no-data-div-resource img,
 .no-data-div-details img,
 .no-data-div-project img,
-.no-data-div-invoice img {
+.no-data-div-invoice img,
+.no-data-div-activity img {
   height: 150px;
   width: auto;
 }
@@ -873,7 +875,8 @@ option {font-size: 14px;}
 .no-data-div-resource p,
 .no-data-div-details p,
 .no-data-div-project p,
-.no-data-div-invoice p {
+.no-data-div-invoice p,
+.no-data-div-activity p {
   color: #464648;
   font-weight: 500;
 }

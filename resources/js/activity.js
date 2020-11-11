@@ -31,6 +31,7 @@ apis.getAPI('get', utils.statusReportAPI, utils.secretKey, true, (allStatusRepor
     utils.latestOfflineStatusReports = allStatusReports
     console.log(utils.latestOfflineStatusReports)
     loadStatusReportResourceList()
+    loadActivityHistory()
 })
 
 const cards = document.querySelectorAll('.project-card')
@@ -44,6 +45,7 @@ cards.forEach((card) => {
 
 function activityCall(card) {
     loadStatusReportResourceList(card)
+    loadActivityHistory(card)
 //   let resourceList = utils.latestOfflineResourceList
 //   if (resourceList && resourceList.length > 0) {
 //     // Clear the 'No data available' message
@@ -60,6 +62,15 @@ function activityCall(card) {
 
 }
 
+function loadActivityHistory(card) {
+    const currentProjectId = card ? Number(card.dataset.id) : Number(document.querySelector('.active-card').dataset.id);
+    if(utils.latestOfflineStatusReports[currentProjectId-1] && utils.latestOfflineStatusReports[currentProjectId-1].length > 0) {
+        document.querySelector('.no-data-div-activity').style.display = 'none'
+
+    } else {
+        document.querySelector('.no-data-div-activity').style.display = 'block'
+    }
+}
 
 let datesDropDown = document.querySelector('#dates')
 
