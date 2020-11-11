@@ -30,8 +30,36 @@ import apis from './api.js'
 apis.getAPI('get', utils.statusReportAPI, utils.secretKey, true, (allStatusReports) => {
     utils.latestOfflineStatusReports = allStatusReports
     console.log(utils.latestOfflineStatusReports)
-    // resourceCall(firstSelectedCard)
+    loadStatusReportResourceList()
 })
+
+const cards = document.querySelectorAll('.project-card')
+const firstSelectedCard = document.querySelector('.active-card')
+cards.forEach((card) => {
+  card.addEventListener('click', (e) => {
+    let cardDiv = e.target.closest('div')
+    activityCall(cardDiv)
+  })
+})
+
+function activityCall(card) {
+    loadStatusReportResourceList(card)
+//   let resourceList = utils.latestOfflineResourceList
+//   if (resourceList && resourceList.length > 0) {
+//     // Clear the 'No data available' message
+//     document.querySelector('.no-data-div-resource').style.display = 'none'
+//     availableResource = true
+
+//     let selectedResources = resourceList.filter((resources) => resources.project_id == card.dataset.id)
+//     tableMaker(selectedResources)
+//   }
+//   else {
+//     document.querySelector('.no-data-div-resource').style.display = 'block'
+//     availableResource = false
+//   }
+
+}
+
 
 let datesDropDown = document.querySelector('#dates')
 
@@ -71,6 +99,23 @@ dateArray.forEach(
         datesDropDown.appendChild(option)
     }
 )
+
+// Load options for resource list drop down
+function loadStatusReportResourceList(card='') {
+    const currentProjectId = card ? Number(card.dataset.id) : Number(document.querySelector('.active-card').dataset.id);
+    const currentProjectResourceList = utils.latestOfflineResourceList.reduce((acc, curr) => {
+        curr.project_id === currentProjectId ? acc.push(curr.name+', '+curr.email) : acc;
+        return acc;
+      }, []);
+    const resourceListOptions = document.querySelector('#resources-list');
+    resourceListOptions.innerHTML = '';
+    const defaultOption = createOptions('', 'Select');
+    resourceListOptions.appendChild(defaultOption);
+    currentProjectResourceList.forEach(resource => {
+        const option = createOptions(resource, resource);
+        resourceListOptions.appendChild(option);
+    })
+}
 
 // Append 0 to single digit time spent values
 const hoursSequence = Array.from({length:16}, (_, index) => String(index + 1).length == 1 ? `0${index + 1}`: `${index + 1}`),
