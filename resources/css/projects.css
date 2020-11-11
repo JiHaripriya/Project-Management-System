@@ -626,12 +626,18 @@ th {
 option {font-size: 14px;}
 .resource-alignment {flex: 1;}
 .time-alignment {margin-right: 3px;}
-.save-button {align-items: flex-end;}
+.save-button {align-items: center;}
 
 .activity-tab .scroll-box {
   height: 60%; 
   margin-top: 10px; 
   font-size: 14px;
+}
+
+#resource-error-message{
+  font-size: 90%;
+  color: rgb(255, 0, 51);
+  padding-left: 8px;
 }
 
 .history {
@@ -649,11 +655,14 @@ option {font-size: 14px;}
 .history-date {
   position: relative;
   top: -25px;
-  padding: 2px;
+  padding: 2px 8px;
   display: block;
   text-align: center;
-  width: 15%;
+  /* width: 15%; */
   background: #e2e1e144;
+  width: fit-content;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 }
 
 .history-tab__contents {padding: 0 10px 6px 10px; margin-top: -10px;}
@@ -666,7 +675,7 @@ option {font-size: 14px;}
 }
 
 .history-tab__contents {
-  margin-bottom: 10px; 
+  margin-bottom: 12px; 
   display: flex; 
   height: 30px; 
   align-items: center;
