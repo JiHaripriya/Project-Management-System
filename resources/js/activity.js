@@ -23,6 +23,16 @@
     3. Activity form submission
 ----------------------------------------------------------------------------------------*/
 
+import utils from './utils.js'
+import apis from './api.js'
+
+/*-------------- API call and global status reports variable setup ---*/
+apis.getAPI('get', utils.statusReportAPI, utils.secretKey, true, (allStatusReports) => {
+    utils.latestOfflineStatusReports = allStatusReports
+    console.log(utils.latestOfflineStatusReports)
+    // resourceCall(firstSelectedCard)
+})
+
 let datesDropDown = document.querySelector('#dates')
 
 // GET DATE VALUE: datesDropDown.addEventListener('change', e => console.log(e.target.value))
