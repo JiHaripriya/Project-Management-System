@@ -112,9 +112,19 @@ function resourceCall(card) {
 
     let selectedResources = resourceList.filter((resources) => resources.project_id == card.dataset.id)
     tableMaker(selectedResources)
+
+    // CODE TO LOAD RESOURCES AND HOURS SPENT DYNAMICALLY INTO PROJECT DETAILS TAB
+    document.querySelector('#resources-activity').style.display = 'block'
+
+
+
+
+
   }
   else {
     document.querySelector('.no-data-div-resource').style.display = 'block'
+    // No activity can be displayed for a project without resource
+    document.querySelector('#resources-activity').style.display = 'none'
     availableResource = false
   }
 

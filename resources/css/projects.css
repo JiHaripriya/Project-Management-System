@@ -418,11 +418,10 @@ footer {
   justify-content: space-between;
   width: 75%;
   margin: 0 auto;
-  margin-top: -20px;
 }
 
 .right-side-details .detail-circle {
-  margin-top: 20px;
+  margin-top: 10px;
   height: 150px;
   width: 150px;
 }
@@ -459,6 +458,23 @@ footer {
   top: 52%;
   font-size: 150%;
 }
+
+.project-details .scroll-box {
+  margin-top: 0;
+  height: 100%;
+}
+
+.project-details {padding: 15px;}
+.resources-activity {padding: 5px; margin: -40px 0 0 0;}
+.hours-spent {
+  font-weight: 700;    
+  display: block;
+  margin: 5px 0;
+  padding-left: 6px;
+}
+.resources-activity__table {padding: 0 0 0 4px;width: 70%;}
+.resources-activity__table th {background-color: #49d8a0; color: #fff;}
+
 
 /* -------------------------------- */
 /* ----- 7. RESOURCES TAB ----------*/

@@ -121,18 +121,51 @@
       <hr class="tab-line">
 
       <!-- First tab -->
-      <div class="tab-content" data-editable="true">
-        <div class="tab-container flex-box">
-
-          <!--  -->
-          <!-- Details list of project. Dynamic using JavaScript -->
-          <!--  -->
-
-          <div class="no-data-div-details">
-            <img src="resources/imgs/error-img.png" alt="No Data available image">
-            <p> No Data Available </p>
+      <div class="project-details tab-content" data-editable="true">
+        <div class="scroll-box">
+          <div class="tab-container flex-box">
+            <!--  -->
+            <!-- Details list of project. Dynamic using JavaScript -->
+            <!--  -->
+  
+            <div class="no-data-div-details">
+              <img src="resources/imgs/error-img.png" alt="No Data available image">
+              <p> No Data Available </p>
+            </div>
           </div>
-
+          <div class="resources-activity" id="resources-activity">
+            <span class="hours-spent">Hours Spent Report</span>
+            <table class="resources-activity__table">
+              <thead>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Hours spent</th>      
+              </thead>
+              <!-- Dynamically populate table body -->
+              <tbody id="resources-activity-table__body">
+                <tr>
+                  <td>Haripriya</td>
+                  <td>haripriya@qburst.com</td>
+                  <td>6</td>
+                </tr>
+                <tr>
+                  <td>Haripriya</td>
+                  <td>haripriya@qburst.com</td>
+                  <td>6</td>
+                </tr>
+                <tr>
+                  <td>Haripriya</td>
+                  <td>haripriya@qburst.com</td>
+                  <td>6</td>
+                </tr>
+                <tr>
+                  <td>Haripriya</td>
+                  <td>haripriya@qburst.com</td>
+                  <td>6</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
