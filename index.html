@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="resources/css/projects.css">
   <link rel="stylesheet" href="resources/css/responsive_projects.css">
+  <link rel="stylesheet" href="resources/css/responsive_activity.css">
 
   <!-- Favicons for browsers, tabs, mobiles, and windows -->
   <link rel="apple-touch-icon" sizes="57x57" href="resources/favicons/apple-icon-57x57.png">
@@ -199,8 +200,19 @@
 
       <!-- Fourth tab -->
       <div class="tab-content activity-tab">
+        <span class="flex-box add-resources-label add-activity-button">
+          <button class="add-resources-btn popup-activity" id="popup-activity">+</button>Add Report
+        </span>
+        <!-- <div class="flex-box add-activity-button">
+          <button type="submit" value="Add Report" class="generate-activity popup-activity" >+ Add Report</button>
+        </div> -->
         <!-- Activity Form -->
         <form id="activity-form" class="flex-box activity-form">
+          <div class="close">
+            <h3 class="add-resources-heading">Add Activity</h3>
+            <hr class="edit-project-line">
+          </div>
+
           <div class="flex-box group date-alignment">
             <label for="date">Date</label>
             <select name="date" id="dates"></select>
@@ -233,7 +245,7 @@
               <option value="15" selected>Other</option>
             </select>
           </div>
-          <div class="flex-box">
+          <div class="flex-box group-alignment">
             <div class="flex-box group time-alignment">
               <label for="spent">Hours</label>
               <select name="time-spent" id="time-spent"></select>
@@ -243,8 +255,8 @@
               <select name="time-spent-minutes" id="time-spent-minutes"></select>
             </div>
           </div>
-          
           <div class="flex-box save-button">
+            <button type="button" value="Cancel" class="close-activity" id="close-activity">Cancel</button>
             <button type="submit" value="Save" class="generate-activity" id="generate-activity">Save</button>
           </div>
         </form>
@@ -292,9 +304,6 @@
                 <span class="seperator-line"></span>
                 <span class="history__posted-time">Posted On: Time</span>
               </div>
-            </div>
-            <div class="entries">
-              <span class="history-date"><span>10/11/2020</span></span>
               <div class="history-tab__contents">
                 <span class="history__resource-name">Resource Name</span>
                 <span class="history__resource-email">Resource Email</span>
@@ -303,9 +312,6 @@
                 <span class="seperator-line"></span>
                 <span class="history__posted-time">Posted On: Time</span>
               </div>
-            </div>
-            <div class="entries">
-              <span class="history-date"><span>10/11/2020</span></span>
               <div class="history-tab__contents">
                 <span class="history__resource-name">Resource Name</span>
                 <span class="history__resource-email">Resource Email</span>
@@ -314,9 +320,6 @@
                 <span class="seperator-line"></span>
                 <span class="history__posted-time">Posted On: Time</span>
               </div>
-            </div>
-            <div class="entries">
-              <span class="history-date"><span>10/11/2020</span></span>
               <div class="history-tab__contents">
                 <span class="history__resource-name">Resource Name</span>
                 <span class="history__resource-email">Resource Email</span>

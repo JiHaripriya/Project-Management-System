@@ -89,9 +89,16 @@ let validate = function (field) {
 function validateEmail(input) {
   if (!isEmail(input.value)) {
     setError(input, "Email is invalid!");
-  }
-  else {
-    clearError(input)
+  } else {
+    // Check to ensure email id uniqueness in a project
+    const currentProjectId = Number(document.querySelector('.active-card').dataset.id);
+    // const currentProjectResourceEmailList = utils.latestOfflineResourceList.filter(resource => resource.project_id = currentProjectId)
+    //                                                                  .map(resource => resource.email);
+    const currentProjectResourceEmailList = utils.latestOfflineResourceList.reduce((acc, curr) => {
+      curr.project_id === currentProjectId ? acc.push(curr.email) : acc;
+      return acc;
+    }, []);
+    currentProjectResourceEmailList.includes(input.value) ? setError(input, "Resource already allocated to this project!") : clearError(input);
   }
 }
 

@@ -21,6 +21,7 @@
     1. Generate past one week's dates and populate generated dates to drop down list
     2. Generate sequence of working hours and minutes and populate generated data
     3. Activity form submission
+    4. Pop up activity form on button click (During Responsive view)
 ----------------------------------------------------------------------------------------*/
 
 let datesDropDown = document.querySelector('#dates')
@@ -87,3 +88,21 @@ minuteSequence.forEach(
 // Activity form submission - Activity Update
 const activityFormButton = document.querySelector("#generate-activity"),
 activityForm = document.querySelector("#activity-form")
+
+
+// Activity Form Pop up
+const popupActivityForm = document.querySelector("#popup-activity")
+popupActivityForm.addEventListener('click', _ => {
+    activityForm.style.display = 'block'
+})
+
+const closeActivityForm = document.querySelector('#close-activity')
+closeActivityForm.addEventListener('click', _ => {
+    activityForm.style.display = 'none'
+})
+
+// Hide or display activity form according to screen width
+window.onresize = function () {
+    if (window.innerWidth > 1070) activityForm.style.display = 'flex'
+    else activityForm.style.display = 'none'
+}
