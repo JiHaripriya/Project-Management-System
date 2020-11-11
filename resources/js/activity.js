@@ -22,7 +22,6 @@ import apis from './api.js'
 /*-------------- API call and global status reports variable setup ---*/
 apis.getAPI('get', utils.statusReportAPI, utils.secretKey, true, (allStatusReports) => {
     utils.latestOfflineStatusReports = allStatusReports
-    console.log(utils.latestOfflineStatusReports)
     loadStatusReportResourceList()
     loadActivityHistory()
 });
@@ -40,6 +39,9 @@ cards.forEach((card) => {
 function activityCall(card) {
     // Clear error message for resource field drop down input
     document.querySelector('#resource-error-message').innerText = '';
+    document.querySelector('#activity-form').reset();
+    document.querySelector('#dates').selectedIndex = dateArray.length - 1;
+    document.querySelector('#time-spent').selectedIndex = 8; // 8 hours is the default value
     loadStatusReportResourceList(card)
     loadActivityHistory(card)
 }
@@ -149,7 +151,7 @@ dateArray.forEach(
 )
 
 // Append 0 to single digit time spent values
-const hoursSequence = Array.from({ length: 16 }, (_, index) => String(index + 1).length == 1 ? `0${index + 1}` : `${index + 1}`),
+const hoursSequence = Array.from({ length: 17 }, (_, index) => String(index).length == 1 ? `0${index}` : `${index}`),
 minuteSequence = Array.from({length:4}, (_, index) => String((index) * 15).length == 1 ? `0${(index) * 15}`: `${(index) * 15}`)
 
 const hoursDropDown = document.querySelector('#time-spent')
@@ -157,7 +159,7 @@ hoursSequence.forEach(
     (hourValue, index) => {
         const option = createOptions(hourValue, hourValue)
         // Select minimum number of working hours (i.e., 8 hours)
-        if (index == 7) option.selected = true
+        if (index == 8) option.selected = true
         hoursDropDown.appendChild(option)
     }
 )
