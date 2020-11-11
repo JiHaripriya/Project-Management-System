@@ -14,6 +14,7 @@
           ii. Generate sequence of working hours and minutes and populate generated data.
     8. Status report form submission.
     9. Function to convert single digit numbers to double by adding zero.
+    10. Pop up activity form on button click (for responsive view).
 ----------------------------------------------------------------------------------------*/
 
 import utils from './utils.js'
@@ -223,4 +224,25 @@ function singleToDouble(num) {
     let n = String(num)
     if (n.length == 1) n = '0' + n
     return n
+}
+
+
+// Activity form pop-up
+const activityForm = document.querySelector("#activity-form");
+
+// Activity Form Pop up
+const popupActivityForm = document.querySelector("#popup-activity")
+popupActivityForm.addEventListener('click', _ => {
+    activityForm.style.display = 'block'
+})
+
+const closeActivityForm = document.querySelector('#close-activity')
+closeActivityForm.addEventListener('click', _ => {
+    activityForm.style.display = 'none'
+})
+
+// Hide or display activity form according to screen width
+window.onresize = function () {
+    if (window.innerWidth > 1070) activityForm.style.display = 'flex'
+    else activityForm.style.display = 'none'
 }

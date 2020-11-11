@@ -586,16 +586,24 @@ th {
 /* -------------------------------- */
 
 .activity-tab {padding: 16px;}
-.generate-activity {
+
+.generate-activity, .close-activity {
   background-color: #49d8a0;
+  border: 1px solid #49d8a0;
   padding: 6px 20px;
-  border: none;
   border-radius: 2px;
   color: #fff;
   outline: none;
   cursor: pointer;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
+}
+
+.close-activity {
+  display: none;
+  border: 1px solid #464648;
+  background-color: #fff;
+  color: #464648;
 }
 
 .wrap {
@@ -608,6 +616,7 @@ th {
   border-radius: 6px;
   width: inherit;
   margin-bottom: 15px;
+  overflow-x: scroll;
 }
 
 .activity-form > div {margin: 0 26px 0 0;}
@@ -628,10 +637,15 @@ option {font-size: 14px;}
 .time-alignment {margin-right: 3px;}
 .save-button {align-items: center;}
 
+.add-activity-button, .close {display: none;}
+.popup-activity {display: none; margin-bottom: 10px;}
+
 .activity-tab .scroll-box {
   height: 60%; 
   margin-top: 10px; 
   font-size: 14px;
+  max-width: 100%;
+  overflow-x: scroll;
 }
 
 #resource-error-message{
@@ -658,14 +672,13 @@ option {font-size: 14px;}
   padding: 2px 8px;
   display: block;
   text-align: center;
-  /* width: 15%; */
+  width: 100px;
   background: #e2e1e144;
   width: fit-content;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
 
-.history-tab__contents {padding: 0 10px 6px 10px; margin-top: -10px;}
 .history-date > span {font-size: 16px;}
 .seperator-line { 
   width: 1px; 
@@ -679,14 +692,12 @@ option {font-size: 14px;}
   display: flex; 
   height: 30px; 
   align-items: center;
+  justify-content: space-between;
+  margin-top: -10px;
+  padding-bottom: 5px;
 }
 
 .history__posted-time {font-size: 13px; color: gray;}
-.history__resource-name {flex: 0.7;}
-.history__resource-email {flex: 0.8;}
-.history__activity-type {flex: 0.5;}
-.history__time-spent {flex: 0.3;}
-.history__posted-time {flex: 0.4;}
 
 /* -------------------------------- */
 /* ----- 10. PROJECT - POPUP --------*/
