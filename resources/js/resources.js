@@ -11,6 +11,7 @@
     6. Edit Resource in server.
     7. Delete Resource in server.
     8. Validation on blur for 'Add resources' and 'Edit resources' form.
+    9. Generate hours spent by each resource belonging to a particular project.
 ----------------------------------------------------------------*/
 import utils from './utils.js'
 import apis from './api.js'
@@ -112,19 +113,9 @@ function resourceCall(card) {
 
     let selectedResources = resourceList.filter((resources) => resources.project_id == card.dataset.id)
     tableMaker(selectedResources)
-
-    // CODE TO LOAD RESOURCES AND HOURS SPENT DYNAMICALLY INTO PROJECT DETAILS TAB
-    document.querySelector('#resources-activity').style.display = 'block'
-
-
-
-
-
   }
   else {
     document.querySelector('.no-data-div-resource').style.display = 'block'
-    // No activity can be displayed for a project without resource
-    document.querySelector('#resources-activity').style.display = 'none'
     availableResource = false
   }
 
@@ -155,12 +146,17 @@ function tableMaker(resourceList) {
 
       activateEdit()
       activateDelete()
+
+      // CODE TO LOAD RESOURCES AND HOURS SPENT DYNAMICALLY INTO PROJECT DETAILS TAB
+      document.querySelector('.resources-activity').style.display = 'block'
     }
     else {
       console.log('No resource available')
       // Display the 'No data available' message
       table.innerHTML = ' '
       document.querySelector('.no-data-div-resource').style.display = 'block'
+      // No report is generated for a project without a resource
+      document.querySelector('.resources-activity').style.display = 'none'
     }
   }
 }

@@ -93,6 +93,9 @@
   .preloader-box{
     left: 40%;
   }
+
+  /* Hours spent table */
+  .resources-activity__table {padding: 0 0 0 4px;width: 100%;}
 }
 
 /*-----------------------------------*/
@@ -105,7 +108,7 @@
     -ms-flex-direction: column;
     flex-direction: column;
     height: 100%;
-    overflow: scroll;
+    margin: 0 0 45px 0;
   }
 
   .left-side-details {
@@ -134,7 +137,7 @@
     margin-top: 0px;
     -webkit-box-pack: end;
     -ms-flex-pack: end;
-    justify-content: end;
+    justify-content: space-between;
     width: 100%;
     margin: 0;
   }
@@ -147,6 +150,7 @@
     top: 56%;
     font-size: 150%;
   }
+  .resources-activity {padding: 5px; margin: 0;}
 }
 
 /*-----------------------------------*/
@@ -233,7 +237,7 @@
     -ms-flex-direction: column;
     flex-direction: column;
     height: 100%;
-    overflow: scroll;
+    margin: 0 0 115px 0;
   }
   .tab-content {
     padding: 10px;
@@ -253,7 +257,7 @@
     margin-top: 0px;
     -webkit-box-pack: end;
     -ms-flex-pack: end;
-    justify-content: end;
+    justify-content: space-between;
     width: 100%;
     margin: 0;
   }
@@ -342,16 +346,18 @@
     -ms-flex-direction: column;
     flex-direction: column;
     height: 100%;
-    overflow: scroll;
+    margin-bottom: 0;
   }
+
   .tab-content {
     padding: 10px;
-    height: 400px;
+    height: 500px;
   }
 
   /*-------------- Invoice tab ---------------*/
   .scroll-box {
-    height: 55% !important;
+    flex-direction: column;
+    display: grid;
   }
 
   /*-------------- Footer ---------------*/

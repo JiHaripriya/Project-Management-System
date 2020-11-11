@@ -49,6 +49,9 @@ function activeProject() {
     
       <p class="heading">Technologies Used:</p>
       <p class="content">${project.tech_used}</p>
+
+      <p class="heading">Total Hours Spent:</p>
+      <p class="content">/--- "project.hours_spent" should be added to project DS ---/</p>
     </div>
     
     <div class="right-side-details flex-box">
