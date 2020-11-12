@@ -130,3 +130,9 @@
         padding: 150px 30px;
     }
 }
+
+@media (max-width: 280px){
+    .activity-form {
+        padding: 150px 5px;
+    }
+}

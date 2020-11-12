@@ -11,9 +11,11 @@
     6. Edit Resource in server.
     7. Delete Resource in server.
     8. Validation on blur for 'Add resources' and 'Edit resources' form.
+    9. Generate hours spent by each resource belonging to a particular project.
 ----------------------------------------------------------------*/
 import utils from './utils.js'
 import apis from './api.js'
+import activity from './activity.js'
 
 /*-------------- API call and global resource variable setup ---*/
 apis.getAPI('get', utils.resourceAPI, utils.secretKey, true, (allResources) => {
@@ -80,8 +82,8 @@ function AddResources(resources) {
     utils.latestOfflineResourceList = resources
     resourceCall(document.querySelector('.active-card'))
   });
-
   utils.popup("AddResources")
+  activity.loadStatusReportResourceList();
 }
 
 /*---------------- Edit resources form popup ---------------------*/
@@ -149,7 +151,7 @@ function tableMaker(resourceList) {
     else {
       console.log('No resource available')
       // Display the 'No data available' message
-      table.innerHTML = ' '
+      table.innerHTML = ''
       document.querySelector('.no-data-div-resource').style.display = 'block'
     }
   }
@@ -198,6 +200,7 @@ updateResourcesBtn.addEventListener('click', () => {
     resourceCall(document.querySelector('.active-card'))
   });
   utils.popup("EditResources")
+  activity.loadStatusReportResourceList();
 })
 
 /*---------------- Delete Resource in server ------------------------*/
@@ -216,6 +219,7 @@ function activateDelete() {
           utils.resourceAPI, utils.secretKey,
           JSON.stringify(updatedOfflineResourceList), (docu) => {
             utils.latestOfflineResourceList = updatedOfflineResourceList
+            activity.loadStatusReportResourceList();
             resourceCall(document.querySelector('.active-card'))
           }
         )

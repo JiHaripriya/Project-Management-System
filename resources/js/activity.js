@@ -7,14 +7,18 @@
     2. Add event listeners to all project cards for loading activity tab data on click event.
     3. Function to load activity tab data.
     4. Function to load options for resource list drop down.
-    5. Function to create option tags with value and text passed to the function.
-    6. Function to load activity tab history (i.e., all status report entries for that project).
-    7. Date drop down related functions:
+    5. Function to load activity tab history (i.e., all status report entries for that project).
+    6. Date drop down related functions:
           i. Generate past one week's dates and populate generated dates to drop down list.
           ii. Generate sequence of working hours and minutes and populate generated data.
-    8. Status report form submission.
-    9. Function to convert single digit numbers to double by adding zero.
-    10. Pop up activity form on button click (for responsive view).
+    7. Status report form submission.
+    8. Pop up activity form on button click (for responsive view).
+    9. Function to calculate total hours spent on the project as well as total hours spent by each resource on the project.
+    10. Function to create option tags with value and text passed to the function.
+    11. Function to convert single digit numbers to double by adding zero.
+    12. Function to return project id of currently selected project.
+    13. Function to format hour value passed into it to hh:mm format and return it.
+    14. Export statements.
 ----------------------------------------------------------------------------------------*/
 
 import utils from './utils.js'
@@ -22,34 +26,38 @@ import apis from './api.js'
 
 /*-------------- API call and global status reports variable setup ---*/
 apis.getAPI('get', utils.statusReportAPI, utils.secretKey, true, (allStatusReports) => {
-    utils.latestOfflineStatusReports = allStatusReports
-    loadStatusReportResourceList()
-    loadActivityHistory()
+    utils.latestOfflineStatusReports = allStatusReports;
+    activityCall();
 });
 
 /*-------- Add event listeners to all project cards for loading activity tab data on click event ---*/
 const cards = document.querySelectorAll('.project-card')
 cards.forEach((card) => {
-    card.addEventListener('click', (e) => {
-        let cardDiv = e.target.closest('div')
-        activityCall(cardDiv)
+    card.addEventListener('click', _ => {
+        activityCall()
     })
 })
 
-/*-------- Function to load activity tab data ----------*/
-function activityCall(card) {
+/* ------- Function to reset status report form ---------- */
+function resetStatusReportForm() {
     // Clear error message for resource field drop down input
     document.querySelector('#resource-error-message').innerText = '';
     document.querySelector('#activity-form').reset();
-    document.querySelector('#dates').selectedIndex = dateArray.length - 1;
+    document.querySelector('#dates').selectedIndex = dateArray.length - 1; // Latest date is the default value
     document.querySelector('#time-spent').selectedIndex = 8; // 8 hours is the default value
-    loadStatusReportResourceList(card)
-    loadActivityHistory(card)
+}
+
+/*-------- Function to load activity tab data ----------*/
+function activityCall() {
+    resetStatusReportForm();
+    hoursSpentByEachResource();
+    loadActivityHistory();
+    loadStatusReportResourceList();
 }
 
 /*-------- Loads options for resource list drop down ----------*/
-function loadStatusReportResourceList(card = '') {
-    const currentProjectId = card ? Number(card.dataset.id) : Number(document.querySelector('.active-card').dataset.id);
+const loadStatusReportResourceList = function () {
+    const currentProjectId = currentlySelectedCardId();
     const currentProjectResourceList = utils.latestOfflineResourceList.reduce((acc, curr) => {
         curr.project_id === currentProjectId ? acc.push(curr.name + ', ' + curr.email) : acc;
         return acc;
@@ -64,20 +72,14 @@ function loadStatusReportResourceList(card = '') {
     })
 }
 
-/*-------- Creates option tags with value and text passed to the function ----------*/
-function createOptions(value, text) {
-    const option = document.createElement('option')
-    option.value = value, option.text = text
-    return option
-}
-
 /*-------- Loads activity tab history (i.e., all status report entries for that project) ----------*/
-function loadActivityHistory(card) {
-    const currentProjectId = card ? Number(card.dataset.id) : Number(document.querySelector('.active-card').dataset.id);
+function loadActivityHistory() {
+    const currentProjectId = currentlySelectedCardId();
     const activityHistory = utils.latestOfflineStatusReports[currentProjectId - 1];
     if (activityHistory && activityHistory.length > 0) {
         document.querySelector('.no-data-div-activity').style.display = 'none'
-        
+        document.querySelector('.resources-activity').style.display = 'block'
+
         const sortable = activityHistory.reduce((acc, statusReport) => {
             acc[statusReport.date] ? acc[statusReport.date].push(statusReport) : acc[statusReport.date] = Array(statusReport);
             return acc;
@@ -85,7 +87,7 @@ function loadActivityHistory(card) {
         const activityHistoryByDate = Object.entries(sortable)
             .sort(([a,], [b,]) => { return new Date(b) - new Date(a); })
             .reduce((acc, [date, statusReportArray]) => ({ ...acc, [date]: statusReportArray }), {});
-        
+
         const history = document.querySelector('.history-tab');
         history.innerHTML = '';
 
@@ -93,8 +95,7 @@ function loadActivityHistory(card) {
             const entries = document.createElement('div');
             entries.className = 'entries';
             entries.innerHTML = `<span class="history-date"><span>${x.split('-').reverse().join('/')}</span></span>`;
-            
-            activityHistoryByDate[x].forEach(statusReport => {
+            activityHistoryByDate[x].reverse().forEach(statusReport => {
                 const statusReportEntry = document.createElement('div');
                 statusReportEntry.className = 'history-tab__contents';
                 statusReportEntry.innerHTML += `<span class="history__resource-name">${statusReport.resourceName}</span>
@@ -105,18 +106,19 @@ function loadActivityHistory(card) {
                 <span class="history__posted-time" style="font-size: 80%">Posted On: <br>${statusReport.submitDate.split('-').reverse().join('/')}  ${statusReport.submitTime}</span>`;
                 entries.appendChild(statusReportEntry);
             })
-            
+
             history.appendChild(entries);
         }
     } else {
         document.querySelector('.no-data-div-activity').style.display = 'block'
+        document.querySelector('.resources-activity').style.display = 'none'
         const history = document.querySelector('.history-tab');
         history.innerHTML = '';
     }
 }
 
 /*---------------------------------------------------------------------------------------------------------*/
-/*-------------------------------- Date drop down related functions ---------------------------------------*/
+/*------------------------------- Date and time drop down related functions -------------------------------*/
 /*---------------------------------------------------------------------------------------------------------*/
 let datesDropDown = document.querySelector('#dates')
 
@@ -153,7 +155,7 @@ dateArray.forEach(
 
 // Append 0 to single digit time spent values
 const hoursSequence = Array.from({ length: 17 }, (_, index) => String(index).length == 1 ? `0${index}` : `${index}`),
-minuteSequence = Array.from({length:4}, (_, index) => String((index) * 15).length == 1 ? `0${(index) * 15}`: `${(index) * 15}`)
+    minuteSequence = Array.from({ length: 4 }, (_, index) => String((index) * 15).length == 1 ? `0${(index) * 15}` : `${(index) * 15}`)
 
 const hoursDropDown = document.querySelector('#time-spent')
 hoursSequence.forEach(
@@ -205,7 +207,7 @@ activityFormButton.addEventListener('click', function (e) {
     const submitDateTime = new Date();
     const submitDate = submitDateTime.getFullYear() + '-' + singleToDouble(submitDateTime.getMonth() + 1) + '-' + singleToDouble(submitDateTime.getDate());
     const submitTime = singleToDouble(submitDateTime.getHours()) + ':' + singleToDouble(submitDateTime.getMinutes()) + ':' + singleToDouble(submitDateTime.getSeconds());
-    
+
     if (resourceName && emailId) {
         // All form data is valid
         const statusReportObj = {
@@ -217,25 +219,54 @@ activityFormButton.addEventListener('click', function (e) {
             submitDate,
             submitTime
         }
-        if(!utils.latestOfflineStatusReports[Number(document.querySelector('.active-card').dataset.id)-1]){
-            utils.latestOfflineStatusReports[Number(document.querySelector('.active-card').dataset.id)-1] = [];
+        if (!utils.latestOfflineStatusReports[Number(document.querySelector('.active-card').dataset.id) - 1]) {
+            utils.latestOfflineStatusReports[Number(document.querySelector('.active-card').dataset.id) - 1] = [];
         }
+
         utils.latestOfflineStatusReports[Number(document.querySelector('.active-card').dataset.id)-1].push(statusReportObj);
-        console.log(utils.latestOfflineStatusReports)
-        apis.putAPI("PUT", utils.statusReportAPI, utils.secretKey, JSON.stringify(utils.latestOfflineStatusReports), (obj) => {
-            activityCall(document.querySelector('.active-card'));
-        });
+        const currentProjectStatusReports = utils.latestOfflineStatusReports[Number(document.querySelector('.active-card').dataset.id)-1]
+
+        const resourceWorkingHours = calculateResourceWorkingHours(currentProjectStatusReports, date, emailId.trim())
+                                
+        // Check whether total working hours of the selected resource exceeds threshold
+        if (resourceWorkingHours > 16) {
+            // Remove local update
+            utils.latestOfflineStatusReports[Number(document.querySelector('.active-card').dataset.id)-1].pop()
+            document.querySelector('.overtime-popup').innerHTML = `
+                        <img src="resources/imgs/error-img.png" alt="No Data available image">
+                        <h3 class="add-resources-heading" style="margin-top: 10px;"> Maximum working hours per day is 16</h3>
+                        <h5> You have already entered ${calculateResourceWorkingHours(currentProjectStatusReports, date, emailId.trim())} hours for this resource! </h5>
+                        <span class="generate-activity" id="close-popup" style="margin: 15px 0 0 0;">Ok</span>`
+
+            utils.popup('OvertimePopUp')
+
+            // Close validation pop
+            const validationPopUp = document.querySelector('#close-popup')
+            validationPopUp.addEventListener('click', _ => utils.popup('OvertimePopUp'))
+        }
+        else {
+            apis.putAPI("PUT", utils.statusReportAPI, utils.secretKey, JSON.stringify(utils.latestOfflineStatusReports), (obj) => {
+                activityCall(document.querySelector('.active-card'));
+            });
+        }
         if (window.innerWidth < 1230) activityForm.style.display = 'none'
     }
+    
 });
 
-// Converts single digit numbers to double by adding zero
-function singleToDouble(num) {
-    let n = String(num)
-    if (n.length == 1) n = '0' + n
-    return n
+// Calculate number of working hours in a day for a resource
+function calculateResourceWorkingHours(resourceList, date, emailId) {
+    return resourceList.filter(report => report.date == date && report.emailId == emailId.trim())
+            .map (resource => {
+                const [hours, minutes] = resource.hoursSpent.split(':')
+                return Number(hours) + (Number(minutes)/60) 
+            })
+            .reduce((sum, value) => {return sum + value}, 0)
 }
 
+/*-----------------------------------------------------------------*/
+/*-----------Activity form pop-up for responsive view--------------*/
+/*-----------------------------------------------------------------*/
 
 // Activity Form Pop up
 const popupActivityForm = document.querySelector("#popup-activity")
@@ -246,7 +277,7 @@ popupActivityForm.addEventListener('click', _ => {
 const closeActivityForm = document.querySelector('#close-activity')
 closeActivityForm.addEventListener('click', _ => {
     activityForm.style.display = 'none'
-    document.querySelector('#resource-error-message').innerText = '' // Clear error message
+    resetStatusReportForm()
 })
 
 // Hide or display activity form according to screen width
@@ -254,3 +285,92 @@ window.onresize = function () {
     if (window.innerWidth >= 1230) activityForm.style.display = 'flex'
     else activityForm.style.display = 'none'
 }
+
+/*----------------------------------------------------------------------------------------------------------------------------*/
+/*----------------------------Function to load activity data in Project page 'Details' tab------------------------------------*/
+/*----------------------------------------------------------------------------------------------------------------------------*/
+
+// Calculates total hours spent on the project as well as total hours spent by each resource on the project
+function hoursSpentByEachResource() {
+    const currentProjectId = currentlySelectedCardId() - 1;
+    const statusReportEntries = utils.latestOfflineStatusReports[currentProjectId];
+    if (statusReportEntries) {
+
+        let totalHoursSpent = 0;
+        // Calculates total hours spent on the project - totalHoursSpent
+        // as well as total hours spent by each resource on the project - hoursBreakDown
+        const hoursBreakDown = statusReportEntries.reduce((acc, curr) => {
+            const [hours, minutes] = curr.hoursSpent.split(':');
+            const timeSpent = Number(hours) + Number(minutes) / 60;
+            acc[curr.emailId] ? acc[curr.emailId] += timeSpent : acc[curr.emailId] = timeSpent;
+            totalHoursSpent += timeSpent;
+            return acc;
+        }, {});
+
+        // Creates object with unique email ids in the project's status reports array as keys and the resource's name as value
+        const emailIdNameMapping = statusReportEntries.reduce((acc, curr) => {
+            if (!acc[curr.emailId]) {
+                acc[curr.emailId] = curr.resourceName;
+            }
+            return acc;
+        }, {});
+
+        // If time has been invested on the project
+        if (totalHoursSpent) {
+            utils.formattedTotalHoursSpent = formatTime(totalHoursSpent);
+
+            if (document.querySelector('#total-hours-spent')) {
+                document.querySelector('#total-hours-spent').innerHTML = `${utils.formattedTotalHoursSpent} hour(s)`;
+            }
+
+            const hoursBreakDownTableBody = document.querySelector('#resources-activity-table__body');
+            hoursBreakDownTableBody.innerHTML = '';
+            for (const x in hoursBreakDown) {
+                const formattedHoursBreakDown = formatTime(hoursBreakDown[x]);
+
+                hoursBreakDownTableBody.innerHTML += `<tr>
+                <td>${emailIdNameMapping[x]}</td>
+                <td>${x}</td>
+                <td>${formattedHoursBreakDown}</td>
+              </tr>`;
+            }
+        } else {
+            utils.formattedTotalHoursSpent = '00:00';
+        }
+    } else {
+        utils.formattedTotalHoursSpent = '00:00';
+    }
+}
+
+// Returns project id of currently selected project
+function currentlySelectedCardId() {
+    return Number(document.querySelector('.active-card').dataset.id);
+}
+
+/*-------- Creates option tags with value and text passed to the function ----------*/
+function createOptions(value, text) {
+    const option = document.createElement('option')
+    option.value = value, option.text = text
+    return option
+}
+
+// Converts single digit numbers to double by adding zero
+function singleToDouble(num) {
+    let n = String(num)
+    if (n.length == 1) n = '0' + n
+    return n
+}
+
+// Formats hour value passed into it to hh:mm format and returns it
+function formatTime(timeValue) {
+    const tempTimeValue = timeValue.toString().split('.');
+    if (!tempTimeValue[1]) { tempTimeValue[1] = 0; }
+    // tempTimeValue[1] will have either 0, 25, 5, or 75 as value (value of timeValue after decimal point as minutes can only be selected as 15, 30, or 45)
+    // If .5, then set as half of 60 mins which is 30 mins otherwise multiply with .60 and format to double digits
+    const formattedTimeValue = singleToDouble(tempTimeValue[0]) + ':' + (tempTimeValue[1] === '5' ? '30' : singleToDouble(tempTimeValue[1] * .60));
+    return formattedTimeValue;
+}
+
+/*------------------Export--------------------*/
+let activity = { loadStatusReportResourceList };
+export default activity;

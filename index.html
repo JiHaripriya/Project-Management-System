@@ -121,18 +121,31 @@
       <hr class="tab-line">
 
       <!-- First tab -->
-      <div class="tab-content" data-editable="true">
-        <div class="tab-container flex-box">
-
-          <!--  -->
-          <!-- Details list of project. Dynamic using JavaScript -->
-          <!--  -->
-
-          <div class="no-data-div-details">
-            <img src="resources/imgs/error-img.png" alt="No Data available image">
-            <p> No Data Available </p>
+      <div class="project-details tab-content" data-editable="true">
+        <div class="scroll-box">
+          <div class="tab-container flex-box">
+            <!--  -->
+            <!-- Details list of project. Dynamic using JavaScript -->
+            <!--  -->
+  
+            <div class="no-data-div-details">
+              <img src="resources/imgs/error-img.png" alt="No Data available image">
+              <p> No Data Available </p>
+            </div>
           </div>
-
+          <div class="resources-activity" id="resources-activity">
+            <span class="hours-spent">Hours Spent Report</span>
+            <table class="resources-activity__table">
+              <thead>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Hours Spent</th>      
+              </thead>
+              <!-- Dynamically populate table body -->
+              <tbody id="resources-activity-table__body">
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
@@ -454,6 +467,20 @@
       <button class="delete-resources-popup-btn">Delete</button>
     </div>
   </section>
+
+  <!-- Pop up -   -->
+  <section class="popup overtime-popup">
+    <span style="display: flex;
+            font-size: 1.2rem;
+            font-weight: 900;
+            border: 1px black solid;
+            padding: 2px 4px;
+            width: fit-content;
+            width: -webkit-fit-content;
+            float: right;
+            cursor: pointer;" id="close-popup">X</span>
+  </section>
+
   <!-- Preloader -->
   <section class="preloader-box flex-box">
     <div class="preloader"></div>

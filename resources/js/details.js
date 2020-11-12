@@ -49,6 +49,9 @@ function activeProject() {
     
       <p class="heading">Technologies Used:</p>
       <p class="content">${project.tech_used}</p>
+
+      <p class="heading">Total Hours Spent:</p>
+      <p class="content" id="total-hours-spent">${utils.formattedTotalHoursSpent} hour(s)</p>
     </div>
     
     <div class="right-side-details flex-box">
@@ -81,7 +84,6 @@ function activeProject() {
     }
   });
 }
-
 
 /*---------------- Edit projects form ------------------------*/
 const cancelEditProjectsBtn = document.querySelector(".cancel-edit-btn");
