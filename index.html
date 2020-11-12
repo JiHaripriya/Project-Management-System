@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="resources/css/projects.css">
   <link rel="stylesheet" href="resources/css/responsive_projects.css">
+  <link rel="stylesheet" href="resources/css/responsive_activity.css">
 
   <!-- Favicons for browsers, tabs, mobiles, and windows -->
   <link rel="apple-touch-icon" sizes="57x57" href="resources/favicons/apple-icon-57x57.png">
@@ -33,7 +34,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tagify/3.20.3/tagify.min.css"
     integrity="sha512-WHUiCHz/wMPvwLomZas+LNiUjd2mMhIdM2ybtlsC2TM6E+EGjn8PIbXnoPgh7sXgYaomLMVQCRVPQpAq2vkZ4g=="
     crossorigin="anonymous" />
-
   <title>Projects</title>
 </head>
 
@@ -113,6 +113,7 @@
           <button class="active-tab" data-index="0">Details</button>
           <button data-index="1">Resources</button>
           <button data-index="2" id="invoice-btn">Invoice</button>
+          <button data-index="3" id="activity-btn">Activity</button>
         </div>
         <button class="edit-details-btn"><ion-icon name="create-outline" id="edit-icon"></button>
       </div>
@@ -129,7 +130,7 @@
 
           <div class="no-data-div-details">
             <img src="resources/imgs/error-img.png" alt="No Data available image">
-            <p>No Data Available</p>
+            <p> No Data Available </p>
           </div>
 
         </div>
@@ -177,6 +178,81 @@
         </div>
         <p class="total-amount-label">Total: <span class="total-amount"></span></p>
       </div>
+
+      <!-- Fourth tab -->
+      <div class="tab-content activity-tab">
+        <span class="flex-box add-resources-label add-activity-button">
+          <button class="add-resources-btn popup-activity" id="popup-activity">+</button>Add Report
+        </span>
+        <!-- Activity Form -->
+        <form id="activity-form" class="flex-box activity-form">
+          <div class="close">
+            <h3 class="add-resources-heading">Add Activity</h3>
+            <hr class="edit-project-line">
+          </div>
+
+          <div class="flex-box group date-alignment">
+            <label for="date">Date</label>
+            <select name="date" id="dates"></select>
+          </div>
+          <div class="flex-box group resource-alignment">
+            <label for="resources">Resource</label>
+            <!-- Populate resources -->
+            <select name="resources-list" id="resources-list">
+              <!-- <option value="">Select</option> -->
+              <option value="">Select</option>
+            </select>
+            <span id="resource-error-message"></span>
+          </div>
+          <div class="flex-box group activity-alignment">
+            <label for="activity-type">Activity Type</label>
+            <select name="activity-type" id="activity-type">
+              <option value="Project management">Project management</option>
+              <option value="Training">Training</option>
+              <option value="Architecting">Architecting</option>
+              <option value="Requirements analysis">Requirements analysis</option>
+              <option value="System design">System design</option>
+              <option value="Coding" selected>Coding</option>
+              <option value="Graphic design">Graphic design</option>
+              <option value="Testing">Testing</option>
+              <option value="HTML/CSS">HTML/CSS</option>
+              <option value="Pre-sales">Pre-sales</option>
+              <option value="Tech Support">Tech Support</option>
+              <option value="UX design">UX design</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Business Analysis">Business Analysis</option>
+              <option value="Recruitment & HR">Recruitment &amp; HR</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="flex-box group-alignment">
+            <div class="flex-box group time-alignment">
+              <label for="spent">Hours</label>
+              <select name="time-spent" id="time-spent"></select>
+            </div>
+            <div class="flex-box group time-alignment">
+              <label for="spent">Minutes</label>
+              <select name="time-spent-minutes" id="time-spent-minutes"></select>
+            </div>
+          </div>
+          <div class="flex-box save-button">
+            <button type="button" value="Cancel" class="close-activity" id="close-activity">Cancel</button>
+            <button type="submit" value="Save" class="generate-activity" id="generate-activity">Save</button>
+          </div>
+        </form>
+        <span class="history">History</span>
+        <!-- History Data Section -->
+        <div class="scroll-box">
+          <!-- DISPLAY THIS ONLY IF HISTORY IS NOT AVAILABLE FOR A PROJECT -->
+            <div class="no-data-div-activity">
+              <img src="resources/imgs/error-img.png" alt="No Data available image">
+              <p>No Data Available</p>
+            </div> 
+         
+          <div class="history-tab"></div>
+        </div>
+      </div>
+
     </section>
     <!--      Middle tabs end here-->
 
@@ -389,6 +465,7 @@
   <script type="module" src="resources/js/projects.js"></script>
   <script type="module" src="resources/js/details.js"></script>
   <script type="module" src="resources/js/resources.js"></script>
+  <script type="module" src="resources/js/activity.js"></script>
   <script type="module" src="resources/js/invoice.js"></script>
 
   <!-- ionicons -->

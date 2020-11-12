@@ -1,0 +1,132 @@
+@media (max-width: 1400px) {  
+
+    .activity-form > div {margin: 0 26px 0 0;}
+    .activity-form select {margin: 6px 0 0 0;}
+    
+    .activity-form select {
+        font-size: 14px; 
+        border-radius: 2px;
+        padding: 5px;
+    }
+    
+    .activity-form select:focus {
+        outline: 1px solid black; 
+    }
+    
+    option {font-size: 14px;}
+    .resource-alignment {flex: 1;}
+    .time-alignment {margin-right: 3px;}
+    .save-button {align-items: flex-end;}
+    
+    .add-activity-button, .close {display: none;}
+    .popup-activity {display: none; margin-bottom: 10px;}
+
+    .close-activity {
+        display: none;
+        border: 1px solid #d84981;
+        border-radius: 6px;
+    }
+
+    .close-activity:hover {
+        background-color: #d84981;
+        color: #fff;
+        transform: scale(1.01);
+        box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .activity-form {
+        display: flex;
+        background-color: #e2e1e144;
+        padding: 15px;
+        border-radius: 6px;
+        width: inherit;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 1070px) {
+    .activity-form .close {border-bottom: 1px solid #46464881;}
+    .activity-form .close span {width: 100%;}
+    .activity-form > div {margin: 0 30px 20px 30px;}
+    .activity-form select {margin: 6px 0 0 0;}
+    .group-alignment {justify-content: space-between;}
+    .time-alignment {margin-right: 0px;width: 45%;}
+    .save-button {justify-content: space-between; padding-top: 3px;}
+    .save-button > * {width: 45%;}
+    .activity-tab .scroll-box {
+        height: 75%;
+    }
+
+    .activity-form {
+        display: none;
+        background-color: white;
+        padding: 10px;
+        border-radius: 0px;
+        width: 70%;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+        flex-direction: column;
+        position: absolute;
+        z-index: 6000;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        padding: 150px;
+        background-image:linear-gradient(to bottom, white 0%, white 100%), linear-gradient(to bottom, #49d8a1b7 0%, white 100%);
+        background-clip: content-box, padding-box;
+    }
+
+    .add-activity-button {
+        display: flex; 
+        align-items: baseline;
+        width: 100%;
+    }
+    
+    .popup-activity, .close {display: block;}
+    .close {padding: 15px 0 0 0;}
+    .close-activity {
+        display: block;
+    }
+}
+
+@media (max-width: 770px) {
+    .activity-tab .scroll-box {
+    height: 70%; 
+    }
+    .activity-form {
+        padding: 150px 100px;
+    }
+}
+
+@media (max-width: 600px){
+    .activity-form {
+        padding: 150px 60px;
+    }
+
+    .entries,
+    .history-date {border: 1px solid #e2e1e1a1;}
+    .history-date {border-bottom: none; padding-bottom: 0; position: relative; left: -1px;}
+    
+    .history-tab__contents {
+        display: table;
+        width: 100%;
+        margin: 0 15px 15px 0;
+        margin-bottom: 25px; 
+        align-items: center;
+        justify-content: space-between;
+        margin-top: -10px;
+        padding: 5px 10px;
+    }
+    .history-tab__contents:nth-child(odd){
+        background-color: #e2e1e12d;
+    }
+    .history-tab__contents > span {display: flex; margin-bottom: 2px;}
+    
+}
+
+@media (max-width: 430px){
+    .activity-form {
+        padding: 150px 30px;
+    }
+}

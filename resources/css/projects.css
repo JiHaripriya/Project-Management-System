@@ -10,9 +10,11 @@
 6. DETAILS TAB
 7. RESOURCES TAB
 8. INVOICE TAB
-9. PROJECT - POPUP
-10. Preloader
-11. Navigation drawer
+9. ACTIVITY TAB
+10. PROJECT - POPUP
+11. Server error messages
+12. Preloader
+13. Navigation drawer
 -----------------------------------------------------------------------------------------------------------*/
 
 /* -------------------------------- */
@@ -26,7 +28,7 @@
   box-sizing: border-box;
 }
 
-html {
+html, select {
   background-color: #fff;
   color: #464648;
   font-family: "Manrope", sans-serif;
@@ -580,7 +582,123 @@ th {
 }
 
 /* -------------------------------- */
-/* ----- 9. PROJECT - POPUP --------*/
+/* ----- 9. ACTIVITY TAB --*/
+/* -------------------------------- */
+
+.activity-tab {padding: 16px;}
+
+.generate-activity, .close-activity {
+  background-color: #49d8a0;
+  border: 1px solid #49d8a0;
+  padding: 6px 20px;
+  border-radius: 5px;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.generate-activity:hover {
+  transition: all 0.2s ease;
+  transform: scale(1.01);
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+.close-activity {
+  display: none;
+  background-color: #fff;
+  color: #464648;
+}
+
+.wrap {flex-wrap: wrap;}
+.activity-form {
+  background-color: #e2e1e144;
+  padding: 15px;
+  border-radius: 6px;
+  width: inherit;
+  margin-bottom: 15px;
+  overflow-x: scroll;
+}
+
+.activity-form > div {margin: 0 26px 0 0;}
+.activity-form select {margin: 6px 0 0 0;}
+
+.activity-form select {
+  font-size: 14px; 
+  border-radius: 2px;
+  padding: 5px;
+}
+
+.activity-form select:focus {outline: 1px solid black; }
+option {font-size: 14px;}
+.resource-alignment {flex: 1;}
+.time-alignment {margin-right: 3px;}
+.save-button {align-items: flex-end;}
+.add-activity-button, .close {display: none;}
+.popup-activity {display: none; margin-bottom: 10px;}
+
+.activity-tab .scroll-box {
+  height: 60%; 
+  margin-top: 10px; 
+  font-size: 14px;
+  max-width: 100%;
+  overflow-x: scroll;
+}
+
+#resource-error-message {
+  font-size: 90%;
+  color: rgb(255, 0, 51);
+  padding-left: 8px;
+}
+
+.history {
+  font-weight: bold; 
+  display: block; 
+  padding-top: 5px; 
+}
+
+.history-tab {margin: 25px 0 0 0;}
+.history-tab > div {margin: 0 0 35px 0;}
+
+.entries {border-top: 0.5px solid #4646486e; }
+
+.history-date {
+  position: relative;
+  top: -25px;
+  padding: 2px 8px;
+  display: block;
+  text-align: center;
+  width: 100px;
+  background: #e2e1e144;
+  width: fit-content;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.history-date > span {font-size: 16px;}
+.seperator-line { 
+  width: 1px; 
+  background-color: #49d8a0; 
+  align-self: stretch; 
+  margin: 0 5px;
+}
+
+.history-tab__contents {
+  margin-bottom: 12px; 
+  display: flex; 
+  height: 30px; 
+  align-items: center;
+  margin-top: -10px;
+  padding-bottom: 5px;
+}
+
+.history-tab__contents > span:not(:nth-child(5)) {flex: 0 1 20%;}
+.history-tab__contents > span:nth-child(2) {flex: 0 1 25%;}
+.history__posted-time {font-size: 13px; color: gray;}
+
+/* -------------------------------- */
+/* ----- 10. PROJECT - POPUP --------*/
 /* -------------------------------- */
 .add-project-line,
 .edit-project-line {
@@ -752,12 +870,13 @@ th {
 }
 
 /* -------------------------------- */
-/* ----- 9. SERVER ERROR MESSAGES --*/
+/* ----- 11. SERVER ERROR MESSAGES --*/
 /* -------------------------------- */
 .no-data-div-resource,
 .no-data-div-details,
 .no-data-div-project,
-.no-data-div-invoice {
+.no-data-div-invoice,
+.no-data-div-activity {
   width: 100%;
   text-align: center;
 }
@@ -765,7 +884,8 @@ th {
 .no-data-div-resource img,
 .no-data-div-details img,
 .no-data-div-project img,
-.no-data-div-invoice img {
+.no-data-div-invoice img,
+.no-data-div-activity img {
   height: 150px;
   width: auto;
 }
@@ -773,13 +893,14 @@ th {
 .no-data-div-resource p,
 .no-data-div-details p,
 .no-data-div-project p,
-.no-data-div-invoice p {
+.no-data-div-invoice p,
+.no-data-div-activity p {
   color: #464648;
   font-weight: 500;
 }
 
 /* -------------------------------- */
-/* ----- 10. PRELOADER ------------ */
+/* ----- 12. PRELOADER ------------ */
 /* -------------------------------- */
 .active-loader{visibility: visible !important;}
 .preloader-box{
@@ -818,7 +939,7 @@ th {
 }
 
 /* -------------------------------- */
-/* ----- 11. Navigation drawer ---- */
+/* ----- 13. Navigation drawer ---- */
 /* -------------------------------- */
 .navigation-drawer{
   flex-direction: column;
