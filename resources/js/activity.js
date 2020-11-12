@@ -33,22 +33,26 @@ apis.getAPI('get', utils.statusReportAPI, utils.secretKey, true, (allStatusRepor
 /*-------- Add event listeners to all project cards for loading activity tab data on click event ---*/
 const cards = document.querySelectorAll('.project-card')
 cards.forEach((card) => {
-    card.addEventListener('click', (e) => {
-        let cardDiv = e.target.closest('div')
-        activityCall(cardDiv)
+    card.addEventListener('click', _ => {
+        activityCall()
     })
 })
 
-/*-------- Function to load activity tab data ----------*/
-function activityCall() {
+/* ------- Function to reset status report form ---------- */
+function resetStatusReportForm() {
     // Clear error message for resource field drop down input
     document.querySelector('#resource-error-message').innerText = '';
     document.querySelector('#activity-form').reset();
     document.querySelector('#dates').selectedIndex = dateArray.length - 1; // Latest date is the default value
     document.querySelector('#time-spent').selectedIndex = 8; // 8 hours is the default value
+}
+
+/*-------- Function to load activity tab data ----------*/
+function activityCall() {
+    resetStatusReportForm();
     hoursSpentByEachResource();
     loadActivityHistory();
-    activity.loadStatusReportResourceList();
+    loadStatusReportResourceList();
 }
 
 /*-------- Loads options for resource list drop down ----------*/
@@ -273,8 +277,7 @@ popupActivityForm.addEventListener('click', _ => {
 const closeActivityForm = document.querySelector('#close-activity')
 closeActivityForm.addEventListener('click', _ => {
     activityForm.style.display = 'none'
-    document.querySelector('#resource-error-message').innerText = '' // Clear error message
-    activityForm.reset()
+    resetStatusReportForm()
 })
 
 // Hide or display activity form according to screen width

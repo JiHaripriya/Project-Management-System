@@ -168,8 +168,6 @@ function addProject() {
   projects.push(projectObj);
   console.log(projects);
   apis.putAPI("PUT", utils.projectAPI, utils.secretKey, JSON.stringify(projects), (res) => { location.reload(); });
-  // removeProjects();
-  // displayProjects();
 }
 
 function removeProjects() {
