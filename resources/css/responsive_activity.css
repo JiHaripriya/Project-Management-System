@@ -44,7 +44,7 @@
     }
 }
 
-@media (max-width: 1070px) {
+@media (max-width: 1230px) {
     .activity-form .close {border-bottom: 1px solid #46464881;}
     .activity-form .close span {width: 100%;}
     .activity-form > div {margin: 0 30px 20px 30px;}
@@ -92,7 +92,7 @@
 
 @media (max-width: 770px) {
     .activity-tab .scroll-box {
-    height: 70%; 
+    height: 80%; 
     }
     .activity-form {
         padding: 150px 100px;
