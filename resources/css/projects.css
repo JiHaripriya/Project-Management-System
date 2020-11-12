@@ -685,7 +685,7 @@ option {font-size: 14px;}
 }
 
 .history-tab__contents {
-  margin-bottom: 12px; 
+  margin-bottom: 30px; 
   display: flex; 
   height: 30px; 
   align-items: center;

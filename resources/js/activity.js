@@ -195,7 +195,7 @@ activityFormButton.addEventListener('click', function (e) {
         activityFormButton.style.marginTop = "0"
     } else {
         document.querySelector('#resource-error-message').innerText = 'This field cannot be null';
-        if (window.innerWidth >= 1070) {
+        if (window.innerWidth >= 1230) {
             document.querySelector('.save-button').style.alignItems = "center"
             activityFormButton.style.marginTop = "7px"
         }
@@ -221,11 +221,11 @@ activityFormButton.addEventListener('click', function (e) {
             utils.latestOfflineStatusReports[Number(document.querySelector('.active-card').dataset.id)-1] = [];
         }
         utils.latestOfflineStatusReports[Number(document.querySelector('.active-card').dataset.id)-1].push(statusReportObj);
-        
+        console.log(utils.latestOfflineStatusReports)
         apis.putAPI("PUT", utils.statusReportAPI, utils.secretKey, JSON.stringify(utils.latestOfflineStatusReports), (obj) => {
             activityCall(document.querySelector('.active-card'));
         });
-        if (window.innerWidth < 1070) activityForm.style.display = 'none'
+        if (window.innerWidth < 1230) activityForm.style.display = 'none'
     }
 });
 
@@ -251,6 +251,6 @@ closeActivityForm.addEventListener('click', _ => {
 
 // Hide or display activity form according to screen width
 window.onresize = function () {
-    if (window.innerWidth >= 1070) activityForm.style.display = 'flex'
+    if (window.innerWidth >= 1230) activityForm.style.display = 'flex'
     else activityForm.style.display = 'none'
 }
