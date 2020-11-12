@@ -209,10 +209,10 @@ let chartMaker = function (canvas, type, featureArray) {
 
 /*----------- Common variables and values -------------------------*/
 // APIs
-let resourceAPI = 'https://api.jsonbin.io/b/5fababf748818715939f2d89';
-let projectAPI = 'https://api.jsonbin.io/b/5fababab5677ab0aa14b0b71';
-let statusReportAPI = 'https://api.jsonbin.io/b/5fabacc3b509ba0cc56d73ee';
-let secretKey = '$2b$10$VGpqgawvNg.JMWKCBCZ/pe1.7EEmRSsshn/QjqKM197jJYVuZ1RW.';
+let resourceAPI = 'https://api.jsonbin.io/b/5facf156ea9b612e1c66b204';
+let projectAPI = 'https://api.jsonbin.io/b/5facf133ea9b612e1c66b1fe';
+let statusReportAPI = 'https://api.jsonbin.io/b/5facf171ea9b612e1c66b20b';
+let secretKey = '$2b$10$pZaqde/aahZpS2VTTnCdGerVLGrHEPsHMpnAFzvi4U.wYV2Hwp3am';
 let latestOfflineResourceList, latestOfflineStatusReports, formattedTotalHoursSpent = '00:00';
 
 // List of technologies for popup input field.
