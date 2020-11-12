@@ -221,13 +221,32 @@ activityFormButton.addEventListener('click', function (e) {
         if(!utils.latestOfflineStatusReports[Number(document.querySelector('.active-card').dataset.id)-1]){
             utils.latestOfflineStatusReports[Number(document.querySelector('.active-card').dataset.id)-1] = [];
         }
+
         utils.latestOfflineStatusReports[Number(document.querySelector('.active-card').dataset.id)-1].push(statusReportObj);
-        console.log(utils.latestOfflineStatusReports)
-        apis.putAPI("PUT", utils.statusReportAPI, utils.secretKey, JSON.stringify(utils.latestOfflineStatusReports), (obj) => {
-            activityCall(document.querySelector('.active-card'));
-        });
+        const currentProjectStatusReports = utils.latestOfflineStatusReports[Number(document.querySelector('.active-card').dataset.id)-1]
+
+        const resourceWorkingHours = currentProjectStatusReports.filter(report => report.date == date && report.emailId == emailId.trim())
+                                    .map (resource => {
+                                        const [hours, minutes] = resource.hoursSpent.split(':')
+                                        const actualTimeSpent = Number(hours) + (Number(minutes)/60)
+                                        return actualTimeSpent
+                                    })
+                                    .reduce((sum, value) => {return sum + value}, 0)
+
+        // Check whether total working hours of the selected resource exceeds threshold
+        if (resourceWorkingHours > 16) {
+            console.log("Cant work for more than 16 hours a day")
+            // Remove local update
+            utils.latestOfflineStatusReports[Number(document.querySelector('.active-card').dataset.id)-1].pop()
+        }
+        else {
+            apis.putAPI("PUT", utils.statusReportAPI, utils.secretKey, JSON.stringify(utils.latestOfflineStatusReports), (obj) => {
+                activityCall(document.querySelector('.active-card'));
+            });
+        }
         if (window.innerWidth < 1230) activityForm.style.display = 'none'
     }
+    
 });
 
 // Converts single digit numbers to double by adding zero
@@ -248,6 +267,7 @@ const closeActivityForm = document.querySelector('#close-activity')
 closeActivityForm.addEventListener('click', _ => {
     activityForm.style.display = 'none'
     document.querySelector('#resource-error-message').innerText = '' // Clear error message
+    activityForm.reset()
 })
 
 // Hide or display activity form according to screen width
