@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="resources/css/dashboard.css">
+  <link rel="stylesheet" href="resources/css/responsive_dashboard.css">
+
+
+  <!-- Favicons for browsers, tabs, mobiles, and windows -->
+  <link rel="apple-touch-icon" sizes="57x57" href="resources/favicons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="resources/favicons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="resources/favicons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="resources/favicons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="resources/favicons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="resources/favicons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="resources/favicons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="resources/favicons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="resources/favicons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="resources/favicons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="resources/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="resources/favicons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="resources/favicons/favicon-16x16.png">
+  <link rel="manifest" href="resources/favicons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="resources/favicons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Google fonts: Monrope -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <title>Dashboard</title>
+</head>
+
+<body>
+
+  <!-- Side panel starts here -->
+  <section class="side-panel">
+    <div class="welcome-area flex-box">
+      <div class="profile-picture"></div>
+      <!-- <ion-icon name="person-circle-outline" class="profile-picture-icon"></ion-icon> -->
+      <p>Welcome<br>Biden</p>
+      <div class="back-arrow">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </div>
+    </div>
+
+    <hr>
+    <!--Separator-->
+
+    <nav class="main-side-nav-box flex-box">
+      <ul class="nav-links">
+        <li class="flex-box">
+          <ion-icon name="bar-chart-outline"></ion-icon>
+          <p>Dashboard</p>
+        </li>
+
+        <li class="flex-box" id="projectLink">
+          <ion-icon name="list-outline"></ion-icon>
+          <p>Projects</p>
+        </li>
+
+        <li class="flex-box">
+          <ion-icon name="settings-outline"></ion-icon>
+          <p>Settings</p>
+        </li>
+      </ul>
+
+      <ul class="logout-box">
+        <li class="flex-box">
+          <ion-icon name="log-out-outline"></ion-icon>
+          <p>Logout</p>
+        </li>
+      </ul>
+    </nav>
+  </section>
+  <!-- Side panel ends here -->
+
+  <!-- Main panel starts here -->
+  <section class="main-panel">
+
+    <header>
+      <div class="text-and-icons flex-box">
+        <div class="mobile-hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        <h1>Project Management Dashboard</h1>
+        <div class="head-icon-box">
+          <ion-icon name="search-outline" class="search-icon"></ion-icon>
+        </div>
+      </div>
+      <!-- <hr> -->
+    </header>
+
+    <!-- Card sections start here -->
+    <div class="cards-area flex-box">
+
+      <div class="card-chips-container flex-box">
+        <div class="top-card-container flex-box">
+
+          <div class="projects-card flex-box">
+            <div class="card-icon flex-box">
+              <ion-icon name="list-outline"></ion-icon>
+            </div>
+            <div class="card-text-area">
+              <p class="card-number">00</p>
+              <p class="card-text">Projects</p>
+            </div>
+          </div>
+
+          <div class="total-employee-card flex-box">
+            <div class="card-icon flex-box">
+              <ion-icon name="people-outline"></ion-icon>
+            </div>
+            <div class="card-text-area">
+              <p class="card-number">11</p>
+              <p class="card-text">Total Employees</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="bottom-card-container flex-box">
+
+          <div class="employees-billable-card flex-box">
+            <div class="card-icon flex-box">
+              <ion-icon name="people-outline"></ion-icon>
+            </div>
+            <div class="card-text-area">
+              <p class="card-number">00</p>
+              <p class="card-text">Employees</p>
+            </div>
+            <div class="billable">Billable</div>
+          </div>
+
+          <div class="employees-shadow-card flex-box">
+            <div class="card-icon flex-box">
+              <ion-icon name="people-outline"></ion-icon>
+            </div>
+            <div class="card-text-area">
+              <p class="card-number">00</p>
+              <p class="card-text">Employees</p>
+            </div>
+            <div class="shadow">Shadow</div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="tech-list-container">
+        <div class="list-header">
+          <p>Technologies And Number Of Projects</p>
+          <hr>
+        </div>
+
+        <div class="tech-list">
+          
+        </div>
+      </div>
+
+    </div>
+    <!-- Card sections end here -->
+
+    <!-- Graph section starts here -->
+    <div class="graph-box flex-box">
+
+      <div class="chart-container" style="position: relative;">
+        <p class="Chart-head">Project vs Tech</p>
+        <canvas id="chartOne"></canvas>
+      </div>
+
+      <div class="chart-container" style="position: relative;">
+        <p class="Chart-head">Project vs Resources</p>
+        <canvas id="chartTwo"></canvas>
+      </div>
+
+    </div>
+    <!-- Graph section ends here -->
+  </section>
+  <!-- main panel ends here -->
+
+  <!-- Preloader -->
+  <section class="preloader-box flex-box">
+    <div class="preloader"></div>
+    <p class="loading-text">Loading... Please Wait</p>
+  </section>
+
+  <!-- Charts.js (This has to be placed first as it is used in local js file)-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js"></script>
+  <!-- Own local script -->
+  <script type="module" src="resources/js/utils.js"></script>
+  <script type="module" src="resources/js/dashboard.js"></script>
+  <!-- ionicons -->
+  <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+
+</body>
+
+</html>
