@@ -178,6 +178,9 @@ minuteSequence.forEach(
 /*----------------------------- Activity form submission - Activity Update --------------------------------*/
 /*---------------------------------------------------------------------------------------------------------*/
 
+// Activity form pop-up
+const activityForm = document.querySelector("#activity-form");
+
 // Event listener for status report form submit button
 const activityFormButton = document.querySelector("#generate-activity");
 activityFormButton.addEventListener('click', function (e) {
@@ -189,8 +192,14 @@ activityFormButton.addEventListener('click', function (e) {
     if (document.querySelector('#resources-list').value) {
         document.querySelector('#resource-error-message').innerText = '';
         [resourceName, emailId] = document.querySelector('#resources-list').value.split(',');
+        document.querySelector('.save-button').style.alignItems = "flex-end"
+        activityFormButton.style.marginTop = "0"
     } else {
         document.querySelector('#resource-error-message').innerText = 'This field cannot be null';
+        if (window.innerWidth >= 1230) {
+            document.querySelector('.save-button').style.alignItems = "center"
+            activityFormButton.style.marginTop = "7px"
+        }
     }
     const activityType = document.querySelector('#activity-type').value;
     const hoursSpent = document.querySelector('#time-spent').value + ':' + document.querySelector('#time-spent-minutes').value;
@@ -213,10 +222,11 @@ activityFormButton.addEventListener('click', function (e) {
             utils.latestOfflineStatusReports[Number(document.querySelector('.active-card').dataset.id)-1] = [];
         }
         utils.latestOfflineStatusReports[Number(document.querySelector('.active-card').dataset.id)-1].push(statusReportObj);
-        
+        console.log(utils.latestOfflineStatusReports)
         apis.putAPI("PUT", utils.statusReportAPI, utils.secretKey, JSON.stringify(utils.latestOfflineStatusReports), (obj) => {
             activityCall(document.querySelector('.active-card'));
         });
+        if (window.innerWidth < 1230) activityForm.style.display = 'none'
     }
 });
 
@@ -228,9 +238,6 @@ function singleToDouble(num) {
 }
 
 
-// Activity form pop-up
-const activityForm = document.querySelector("#activity-form");
-
 // Activity Form Pop up
 const popupActivityForm = document.querySelector("#popup-activity")
 popupActivityForm.addEventListener('click', _ => {
@@ -240,11 +247,12 @@ popupActivityForm.addEventListener('click', _ => {
 const closeActivityForm = document.querySelector('#close-activity')
 closeActivityForm.addEventListener('click', _ => {
     activityForm.style.display = 'none'
+    document.querySelector('#resource-error-message').innerText = '' // Clear error message
 })
 
 // Hide or display activity form according to screen width
 window.onresize = function () {
-    if (window.innerWidth > 1070) activityForm.style.display = 'flex'
+    if (window.innerWidth >= 1230) activityForm.style.display = 'flex'
     else activityForm.style.display = 'none'
 }
 
