@@ -1,5 +1,5 @@
 @media (max-width: 1400px) {  
-        
+
     .activity-form > div {margin: 0 26px 0 0;}
     .activity-form select {margin: 6px 0 0 0;}
     
@@ -23,6 +23,15 @@
 
     .close-activity {
         display: none;
+        border: 1px solid #d84981;
+        border-radius: 6px;
+    }
+
+    .close-activity:hover {
+        background-color: #d84981;
+        color: #fff;
+        transform: scale(1.01);
+        box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
     }
 
     .activity-form {
@@ -58,7 +67,7 @@
         flex-wrap: wrap;
         flex-direction: column;
         position: absolute;
-        z-index: 10;
+        z-index: 6000;
         top: 0;
         left: 0;
         height: 100%;
@@ -68,7 +77,12 @@
         background-clip: content-box, padding-box;
     }
 
-    .add-activity-button {display: flex; align-items: baseline;}
+    .add-activity-button {
+        display: flex; 
+        align-items: baseline;
+        width: 100%;
+    }
+    
     .popup-activity, .close {display: block;}
     .close {padding: 15px 0 0 0;}
     .close-activity {
