@@ -45,6 +45,7 @@ function activityCall(card) {
     document.querySelector('#time-spent').selectedIndex = 8; // 8 hours is the default value
     loadStatusReportResourceList(card)
     loadActivityHistory(card)
+    hoursSpentByEachResource(card)
 }
 
 /*-------- Loads options for resource list drop down ----------*/
@@ -245,4 +246,47 @@ closeActivityForm.addEventListener('click', _ => {
 window.onresize = function () {
     if (window.innerWidth > 1070) activityForm.style.display = 'flex'
     else activityForm.style.display = 'none'
+}
+
+function hoursSpentByEachResource(card) {
+    const statusReportEntries = utils.latestOfflineStatusReports[Number(card.dataset.id)-1];
+    if(statusReportEntries) {
+        let totalHoursSpent = 0;
+        const hoursBreakDown = statusReportEntries.reduce((acc, curr) => {
+          const [hours, minutes] = curr.hoursSpent.split(':');
+          const timeSpent = Number(hours) + Number(minutes)/60;
+          acc[curr.emailId] ? acc[curr.emailId] += timeSpent : acc[curr.emailId] = timeSpent;
+          totalHoursSpent += timeSpent;
+          return acc;
+        }, {});
+        const emailIdNameMapping = statusReportEntries.reduce((acc, curr) => {
+            if(!acc[curr.emailId]) {
+                acc[curr.emailId] = curr.resourceName;
+            }
+            return acc;
+        }, {});
+        console.log(emailIdNameMapping)
+        if(totalHoursSpent) {
+            const tempTotalHoursSpent = totalHoursSpent.toString().split('.');
+            if (!tempTotalHoursSpent[1]) tempTotalHoursSpent[1] = 0;
+            utils.formattedTotalHoursSpent = singleToDouble(tempTotalHoursSpent[0])+':'+singleToDouble(tempTotalHoursSpent[1]*.60);
+            // document.querySelector('#total-hours-spent').innerHTML = `${utils.formattedTotalHoursSpent} hour(s)`;
+            const hoursBreakDownTableBody = document.querySelector('#resources-activity-table__body');
+            hoursBreakDownTableBody.innerHTML = '';
+            for(const x in hoursBreakDown) {
+                const tempHoursBreakDown = hoursBreakDown[x].toString().split('.');
+                if(!tempHoursBreakDown[1]) tempHoursBreakDown[1] = 0;
+                const formattedHoursBreakDown = singleToDouble(tempHoursBreakDown[0])+':'+singleToDouble(tempHoursBreakDown[1]*.60);
+                hoursBreakDownTableBody.innerHTML += `<tr>
+                <td>${emailIdNameMapping[x]}</td>
+                <td>${x}</td>
+                <td>${formattedHoursBreakDown}</td>
+              </tr>`;
+            }
+        } else {
+            utils.formattedTotalHoursSpent = '00:00';
+        }
+    } else {
+        utils.formattedTotalHoursSpent = '00:00';
+    }
 }

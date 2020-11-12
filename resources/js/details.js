@@ -51,7 +51,7 @@ function activeProject() {
       <p class="content">${project.tech_used}</p>
 
       <p class="heading">Total Hours Spent:</p>
-      <p class="content">/--- "project.hours_spent" should be added to project DS ---/</p>
+      <p class="content">${utils.formattedTotalHoursSpent} hour(s)</p>
     </div>
     
     <div class="right-side-details flex-box">
@@ -83,8 +83,51 @@ function activeProject() {
       activeObj = project;
     }
   });
+  // hoursSpentByEachResource(activeProjectCard);
 }
 
+// function hoursSpentByEachResource(card) {
+//   const statusReportEntries = utils.latestOfflineStatusReports[Number(card.dataset.id)-1];
+//   if(statusReportEntries) {
+//       let totalHoursSpent = 0;
+//       const hoursBreakDown = statusReportEntries.reduce((acc, curr) => {
+//         const [hours, minutes] = curr.hoursSpent.split(':');
+//         const timeSpent = Number(hours) + Number(minutes)/60;
+//         acc[curr.emailId] ? acc[curr.emailId] += timeSpent : acc[curr.emailId] = timeSpent;
+//         totalHoursSpent += timeSpent;
+//         return acc;
+//       }, {});
+//       const emailIdNameMapping = statusReportEntries.reduce((acc, curr) => {
+//           if(!acc[curr.emailId]) {
+//               acc[curr.emailId] = curr.resourceName;
+//           }
+//           return acc;
+//       }, {});
+//       console.log(emailIdNameMapping)
+//       if(totalHoursSpent) {
+//           const tempTotalHoursSpent = totalHoursSpent.toString().split('.');
+//           if (!tempTotalHoursSpent[1]) tempTotalHoursSpent[1] = 0;
+//           utils.formattedTotalHoursSpent = singleToDouble(tempTotalHoursSpent[0])+':'+singleToDouble(tempTotalHoursSpent[1]*.60);
+//           // document.querySelector('#total-hours-spent').innerHTML = `${utils.formattedTotalHoursSpent} hour(s)`;
+//           const hoursBreakDownTableBody = document.querySelector('#resources-activity-table__body');
+//           hoursBreakDownTableBody.innerHTML = '';
+//           for(const x in hoursBreakDown) {
+//               const tempHoursBreakDown = hoursBreakDown[x].toString().split('.');
+//               if(!tempHoursBreakDown[1]) tempHoursBreakDown[1] = 0;
+//               const formattedHoursBreakDown = singleToDouble(tempHoursBreakDown[0])+':'+singleToDouble(tempHoursBreakDown[1]*.60);
+//               hoursBreakDownTableBody.innerHTML += `<tr>
+//               <td>${emailIdNameMapping[x]}</td>
+//               <td>${x}</td>
+//               <td>${formattedHoursBreakDown}</td>
+//             </tr>`;
+//           }
+//       } else {
+//           utils.formattedTotalHoursSpent = '00:00';
+//       }
+//   } else {
+//       utils.formattedTotalHoursSpent = '00:00';
+//   }
+// }
 
 /*---------------- Edit projects form ------------------------*/
 const cancelEditProjectsBtn = document.querySelector(".cancel-edit-btn");
