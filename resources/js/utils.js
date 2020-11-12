@@ -33,6 +33,9 @@ let popup = function (typeOfPopup) {
   else if (typeOfPopup == "DeleteResources") {
     var popupCard = document.querySelector('.delete-resources-popup')
   }
+  else if (typeOfPopup == "OvertimePopUp") {
+    var popupCard = document.querySelector('.overtime-popup')
+  }
 
   const leftSection = document.querySelector('.side-panel')
   const rightSection = document.querySelector('.main-panel')

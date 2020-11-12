@@ -713,6 +713,7 @@ option {font-size: 14px;}
 .history-tab__contents > span:nth-child(2) {flex: 0 1 25%; margin-right: 15px;}
 .history__posted-time {font-size: 13px; color: gray;}
 
+.overtime-popup {display: flex;align-items: center;}
 /* -------------------------------- */
 /* ----- 10. PROJECT - POPUP --------*/
 /* -------------------------------- */

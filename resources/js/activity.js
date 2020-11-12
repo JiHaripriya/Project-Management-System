@@ -228,14 +228,25 @@ activityFormButton.addEventListener('click', function (e) {
         const resourceWorkingHours = currentProjectStatusReports.filter(report => report.date == date && report.emailId == emailId.trim())
                                     .map (resource => {
                                         const [hours, minutes] = resource.hoursSpent.split(':')
-                                        const actualTimeSpent = Number(hours) + (Number(minutes)/60)
-                                        return actualTimeSpent
+                                        return Number(hours) + (Number(minutes)/60) 
                                     })
                                     .reduce((sum, value) => {return sum + value}, 0)
 
         // Check whether total working hours of the selected resource exceeds threshold
         if (resourceWorkingHours > 16) {
             console.log("Cant work for more than 16 hours a day")
+            document.querySelector('.overtime-popup').innerHTML = `
+                        <img src="resources/imgs/error-img.png" alt="No Data available image">
+                        <h3 class="add-resources-heading" style="margin-top: 10px;"> Maximum working hours are 16</h3>
+                        <h5> You have already entered ${resourceWorkingHours} hours! </h5>
+                        <span class="generate-activity" id="close-popup" style="margin: 15px 0 0 0;">Ok</span>`
+
+            utils.popup('OvertimePopUp')
+
+            // Close validation pop
+            const validationPopUp = document.querySelector('#close-popup')
+            validationPopUp.addEventListener('click', _ => utils.popup('OvertimePopUp'))
+
             // Remove local update
             utils.latestOfflineStatusReports[Number(document.querySelector('.active-card').dataset.id)-1].pop()
         }
