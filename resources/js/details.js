@@ -51,7 +51,7 @@ function activeProject() {
       <p class="content">${project.tech_used}</p>
 
       <p class="heading">Total Hours Spent:</p>
-      <p class="content">${utils.formattedTotalHoursSpent} hour(s)</p>
+      <p class="content" id="total-hours-spent">${utils.formattedTotalHoursSpent} hour(s)</p>
     </div>
     
     <div class="right-side-details flex-box">

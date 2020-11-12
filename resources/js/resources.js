@@ -15,6 +15,7 @@
 ----------------------------------------------------------------*/
 import utils from './utils.js'
 import apis from './api.js'
+import activity from './activity.js'
 
 /*-------------- API call and global resource variable setup ---*/
 apis.getAPI('get', utils.resourceAPI, utils.secretKey, true, (allResources) => {
@@ -81,8 +82,8 @@ function AddResources(resources) {
     utils.latestOfflineResourceList = resources
     resourceCall(document.querySelector('.active-card'))
   });
-
   utils.popup("AddResources")
+  activity.loadStatusReportResourceList();
 }
 
 /*---------------- Edit resources form popup ---------------------*/
@@ -146,17 +147,12 @@ function tableMaker(resourceList) {
 
       activateEdit()
       activateDelete()
-
-      // CODE TO LOAD RESOURCES AND HOURS SPENT DYNAMICALLY INTO PROJECT DETAILS TAB
-      document.querySelector('.resources-activity').style.display = 'block'
     }
     else {
       console.log('No resource available')
       // Display the 'No data available' message
-      table.innerHTML = ' '
+      table.innerHTML = ''
       document.querySelector('.no-data-div-resource').style.display = 'block'
-      // No report is generated for a project without a resource
-      document.querySelector('.resources-activity').style.display = 'none'
     }
   }
 }
@@ -204,6 +200,7 @@ updateResourcesBtn.addEventListener('click', () => {
     resourceCall(document.querySelector('.active-card'))
   });
   utils.popup("EditResources")
+  activity.loadStatusReportResourceList();
 })
 
 /*---------------- Delete Resource in server ------------------------*/
@@ -222,6 +219,7 @@ function activateDelete() {
           utils.resourceAPI, utils.secretKey,
           JSON.stringify(updatedOfflineResourceList), (docu) => {
             utils.latestOfflineResourceList = updatedOfflineResourceList
+            activity.loadStatusReportResourceList();
             resourceCall(document.querySelector('.active-card'))
           }
         )
