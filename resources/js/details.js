@@ -41,16 +41,16 @@ function activeProject() {
       document.querySelector(
         ".tab-container"
       ).innerHTML = `<div class="left-side-details">
-      <p class="heading">Project Name:</p>
+      <p class="heading">Project Name</p>
       <p class="content">${project.project_name}</p>
     
       <p class="heading">Description</p>
       <p class="content">${project.project_desc}</p>
     
-      <p class="heading">Technologies Used:</p>
+      <p class="heading">Technologies Used</p>
       <p class="content">${project.tech_used}</p>
 
-      <p class="heading">Total Hours Spent:</p>
+      <p class="heading">Total Hours Spent</p>
       <p class="content" id="total-hours-spent">${utils.formattedTotalHoursSpent} hour(s)</p>
     </div>
     
@@ -58,11 +58,11 @@ function activeProject() {
 
       <div class="date-box flex-box">
         <div class="start-date-box">
-          <p class="heading">Start Date:</p>
+          <p class="heading">Start Date</p>
           <p class="content">${project.start_date}</p>
         </div>
         <div class="end-date-box">
-          <p class="heading">End Date:</p>
+          <p class="heading">End Date</p>
           <p class="content">${project.end_date}</p>
         </div>        
       </div>
