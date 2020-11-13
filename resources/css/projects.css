@@ -657,7 +657,7 @@ option {font-size: 14px;}
 .activity-tab .scroll-box {
   height: 60%; 
   margin-top: 10px; 
-  font-size: 14px;
+  font-size: 100%;
   max-width: 100%;
   overflow-x: scroll;
 }
@@ -711,7 +711,7 @@ option {font-size: 14px;}
 
 .history-tab__contents > span:not(:nth-child(5)) {flex: 0 1 20%;}
 .history-tab__contents > span:nth-child(2) {flex: 0 1 25%; margin-right: 15px;}
-.history__posted-time {font-size: 13px; color: gray;}
+.history__posted-time {font-size: 90%; color: black; letter-spacing: .75px;}
 
 .overtime-popup {display: flex;align-items: center;}
 /* -------------------------------- */
