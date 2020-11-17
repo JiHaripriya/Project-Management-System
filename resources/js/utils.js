@@ -212,9 +212,9 @@ let chartMaker = function (canvas, type, featureArray) {
 
 /*----------- Common variables and values -------------------------*/
 // APIs
-let resourceAPI = 'https://api.jsonbin.io/b/5facf156ea9b612e1c66b204';
-let projectAPI = 'https://api.jsonbin.io/b/5facf133ea9b612e1c66b1fe';
-let statusReportAPI = 'https://api.jsonbin.io/b/5fad2333ea9b612e1c66c6de';
+let resourceAPI = 'http://localhost:3000/resources';
+let projectAPI = 'http://localhost:3000/projects';
+let statusReportAPI = 'http://localhost:3000/status';
 let secretKey = '$2b$10$pZaqde/aahZpS2VTTnCdGerVLGrHEPsHMpnAFzvi4U.wYV2Hwp3am';
 let latestOfflineResourceList, latestOfflineStatusReports, formattedTotalHoursSpent = '00:00';
 

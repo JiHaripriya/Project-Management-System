@@ -78,7 +78,7 @@ function AddResources(resources) {
   }
   resources.push(newResource);
 
-  apis.putAPI("PUT", utils.resourceAPI, utils.secretKey, JSON.stringify(resources), (obj) => {
+  apis.putAPI("POST", utils.resourceAPI, utils.secretKey, JSON.stringify(newResource), (obj) => {
     utils.latestOfflineResourceList = resources
     resourceCall(document.querySelector('.active-card'))
   });
@@ -195,7 +195,7 @@ updateResourcesBtn.addEventListener('click', () => {
   updateReference.billable = updatedResourceBillableCheck
   updateReference.rate_per_hour = document.querySelector('#edit-rate-add').value
 
-  apis.putAPI("PUT", utils.resourceAPI, utils.secretKey, JSON.stringify(resourceList), (resp) => {
+  apis.putAPI("PUT", utils.resourceAPI, utils.secretKey, JSON.stringify(updateReference), (resp) => {
     utils.latestOfflineResourceList = resourceList
     resourceCall(document.querySelector('.active-card'))
   });
@@ -213,11 +213,12 @@ function activateDelete() {
       confirmDeleteBtn.addEventListener("click", ()=>{
         let resourceList = utils.latestOfflineResourceList
         let updatedOfflineResourceList = resourceList.filter((a) => a.id != btn.dataset.id);
+        let deletedResource = resourceList.filter((a) => a.id == btn.dataset.id)[0];
         console.log(updatedOfflineResourceList)
         apis.putAPI(
-          "PUT",
+          "DELETE",
           utils.resourceAPI, utils.secretKey,
-          JSON.stringify(updatedOfflineResourceList), (docu) => {
+          JSON.stringify(deletedResource), (docu) => {
             utils.latestOfflineResourceList = updatedOfflineResourceList
             activity.loadStatusReportResourceList();
             resourceCall(document.querySelector('.active-card'))

@@ -29,7 +29,7 @@ let getAPI = function (method, url, secretKey, asyncType, callback) {
   }
 
   xhr.open(method, url, asyncType)
-  xhr.setRequestHeader("secret-key", secretKey)
+  // xhr.setRequestHeader("secret-key", secretKey)
   xhr.send()
 
 }
@@ -56,8 +56,8 @@ let putAPI = function (method, url, secretKey, body, callback) {
 
   xhrp.open(method, url, true);
   xhrp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-  xhrp.setRequestHeader('secret-key', secretKey);
-  xhrp.setRequestHeader('versioning', false);
+  // xhrp.setRequestHeader('secret-key', secretKey);
+  // xhrp.setRequestHeader('versioning', false);
   xhrp.send(body);
 }
 
